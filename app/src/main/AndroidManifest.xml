@@ -18,6 +18,10 @@
         </activity>
 
         <activity
+            android:name=".CellEditorActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".WidgetConfigActivity"
             android:exported="true"
             android:label="@string/config_title">

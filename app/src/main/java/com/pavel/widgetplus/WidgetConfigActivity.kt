@@ -1,7 +1,9 @@
 package com.pavel.widgetplus
 
 import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
@@ -50,6 +52,7 @@ class WidgetConfigActivity : AppCompatActivity() {
     private fun changeCols(delta: Int) {
         config.cols = (config.cols + delta).coerceIn(MIN_COLS, MAX_COLS)
         pruneCells()
+        store.save(widgetId, config)
         updateCounters()
         renderPreview()
     }
@@ -57,6 +60,7 @@ class WidgetConfigActivity : AppCompatActivity() {
     private fun changeRows(delta: Int) {
         config.rows = (config.rows + delta).coerceIn(MIN_ROWS, MAX_ROWS)
         pruneCells()
+        store.save(widgetId, config)
         updateCounters()
         renderPreview()
     }
@@ -96,23 +100,17 @@ class WidgetConfigActivity : AppCompatActivity() {
                     orientation = LinearLayout.VERTICAL
                     gravity = Gravity.CENTER
                     layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
-                    setOnClickListener {
-                        Toast.makeText(
-                            this@WidgetConfigActivity,
-                            getString(R.string.cell_tap, row + 1, col + 1),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    setOnClickListener { openCellEditor(row, col, slot) }
                 }
 
                 if (cell != null) {
                     val size = (24 * density).toInt()
-                    val resId = resources.getIdentifier(cell.icon ?: "", "drawable", packageName)
+                    val drawable = cellDrawable(cell)
                     cellLayout.addView(ImageView(this).apply {
                         layoutParams = LinearLayout.LayoutParams(size, size)
-                        if (resId != 0) {
-                            setImageDrawable(ContextCompat.getDrawable(this@WidgetConfigActivity, resId))
-                            setColorFilter(cell.color)
+                        if (drawable != null) {
+                            setImageDrawable(drawable)
+                            if (cell.icon != null) setColorFilter(cell.color)
                         }
                     })
                     cellLayout.addView(TextView(this).apply {
@@ -130,6 +128,38 @@ class WidgetConfigActivity : AppCompatActivity() {
         }
     }
 
+    private fun cellDrawable(cell: CellConfig): Drawable? = when {
+        cell.icon != null -> {
+            val resId = resources.getIdentifier(cell.icon, "drawable", packageName)
+            if (resId == 0) null else ContextCompat.getDrawable(this, resId)
+        }
+        cell.type == "app" && cell.pkg != null -> runCatching {
+            packageManager.getActivityIcon(ComponentName(cell.pkg, cell.extra.orEmpty()))
+        }.getOrNull()
+        else -> null
+    }
+
+    private fun openCellEditor(row: Int, col: Int, slot: Int) {
+        if (widgetId == AppWidgetManager.INVALID_APPWIDGET_ID) return
+        startActivityForResult(
+            Intent(this, CellEditorActivity::class.java)
+                .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+                .putExtra(CellEditorActivity.EXTRA_SLOT, slot)
+                .putExtra(CellEditorActivity.EXTRA_ROW, row + 1)
+                .putExtra(CellEditorActivity.EXTRA_COL, col + 1),
+            REQUEST_EDIT
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_EDIT) {
+            config = store.load(widgetId) ?: config
+            updateCounters()
+            renderPreview()
+        }
+    }
+
     private fun saveAndFinish() {
         store.save(widgetId, config)
         CraftWidgetProvider.updateWidget(this, widgetId)
@@ -142,6 +172,7 @@ class WidgetConfigActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val REQUEST_EDIT = 101
         private const val MIN_COLS = 2
         private const val MAX_COLS = 8
         private const val MIN_ROWS = 1
