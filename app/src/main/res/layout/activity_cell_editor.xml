@@ -12,11 +12,32 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/icon_current"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnPickIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_change" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="6dp"
         android:hint="@string/search_app"
         android:inputType="text"
         android:maxLines="1" />

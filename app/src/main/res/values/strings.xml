@@ -23,4 +23,12 @@
     <string name="cell_title">Ячейка %1$d, %2$d</string>
     <string name="search_app">Поиск приложения</string>
     <string name="cell_clear">Очистить ячейку</string>
+    <string name="icon_picker_title">Иконки</string>
+    <string name="icon_search_hint">Поиск: фонарик, папка, vpn…</string>
+    <string name="icon_native">Вернуть родную иконку</string>
+    <string name="icon_change">Сменить иконку</string>
+    <string name="icon_current">Иконка</string>
+    <string name="icon_all">Все</string>
+    <string name="icon_count">Иконок: %1$d</string>
+    <string name="icon_need_app">Сначала выбери приложение для этой ячейки</string>
 </resources>

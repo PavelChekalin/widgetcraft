@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lucide (MIT). Сгенерировано tools/build_icons.py, руками не править. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="m 2.05 2.05 1.099 -.028 a 1,1 0 0,1 1.008,.815 l 2.69 14.347 A 1,1 0 0,0 7.83,18 H 18"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 4.563 5 h 16.435 a 1,1 0 0,1 .981,1.204 l -1.026 6.226 A 2,2 0 0,1 18.962,14 H 6.25"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 18 20 m -2 0 a 2,2 0 1,0 4,0 a 2,2 0 1,0 -4,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M 8 20 m -2 0 a 2,2 0 1,0 4,0 a 2,2 0 1,0 -4,0"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

@@ -1,0 +1,1760 @@
+[
+ {
+  "file": "ic_lc_alert_triangle",
+  "name": "внимание",
+  "category": "безопасность",
+  "keywords": "внимание предупреждение"
+ },
+ {
+  "file": "ic_lc_help_circle",
+  "name": "вопрос",
+  "category": "безопасность",
+  "keywords": "вопрос помощь"
+ },
+ {
+  "file": "ic_lc_bug",
+  "name": "жук",
+  "category": "безопасность",
+  "keywords": "жук ошибка баг"
+ },
+ {
+  "file": "ic_lc_lock",
+  "name": "замок",
+  "category": "безопасность",
+  "keywords": "замок пароль"
+ },
+ {
+  "file": "ic_lc_ban",
+  "name": "запрет",
+  "category": "безопасность",
+  "keywords": "запрет нельзя"
+ },
+ {
+  "file": "ic_lc_shield_check",
+  "name": "защищено",
+  "category": "безопасность",
+  "keywords": "защита проверено"
+ },
+ {
+  "file": "ic_lc_info",
+  "name": "информация",
+  "category": "безопасность",
+  "keywords": "информация справка"
+ },
+ {
+  "file": "ic_lc_key",
+  "name": "ключ",
+  "category": "безопасность",
+  "keywords": "ключ пароль доступ"
+ },
+ {
+  "file": "ic_lc_unlock",
+  "name": "открытый замок",
+  "category": "безопасность",
+  "keywords": "замок открыт доступ"
+ },
+ {
+  "file": "ic_lc_fingerprint",
+  "name": "отпечаток",
+  "category": "безопасность",
+  "keywords": "отпечаток палец"
+ },
+ {
+  "file": "ic_lc_alert_circle",
+  "name": "ошибка",
+  "category": "безопасность",
+  "keywords": "ошибка внимание"
+ },
+ {
+  "file": "ic_lc_siren",
+  "name": "сирена",
+  "category": "безопасность",
+  "keywords": "сирена тревога"
+ },
+ {
+  "file": "ic_lc_shield_alert",
+  "name": "тревога",
+  "category": "безопасность",
+  "keywords": "защита внимание"
+ },
+ {
+  "file": "ic_lc_shield",
+  "name": "щит",
+  "category": "безопасность",
+  "keywords": "щит защита"
+ },
+ {
+  "file": "ic_lc_landmark",
+  "name": "банк",
+  "category": "деньги",
+  "keywords": "банк здание колонны"
+ },
+ {
+  "file": "ic_lc_ticket",
+  "name": "билет",
+  "category": "деньги",
+  "keywords": "билет"
+ },
+ {
+  "file": "ic_lc_scale",
+  "name": "весы",
+  "category": "деньги",
+  "keywords": "весы баланс"
+ },
+ {
+  "file": "ic_lc_building",
+  "name": "здание",
+  "category": "деньги",
+  "keywords": "здание офис"
+ },
+ {
+  "file": "ic_lc_badge_check",
+  "name": "значок",
+  "category": "деньги",
+  "keywords": "значок проверка"
+ },
+ {
+  "file": "ic_lc_calculator",
+  "name": "калькулятор",
+  "category": "деньги",
+  "keywords": "калькулятор счёт"
+ },
+ {
+  "file": "ic_lc_credit_card",
+  "name": "карта",
+  "category": "деньги",
+  "keywords": "карта банк оплата"
+ },
+ {
+  "file": "ic_lc_piggy_bank",
+  "name": "копилка",
+  "category": "деньги",
+  "keywords": "копилка накопления"
+ },
+ {
+  "file": "ic_lc_shopping_cart",
+  "name": "корзина",
+  "category": "деньги",
+  "keywords": "корзина покупки"
+ },
+ {
+  "file": "ic_lc_wallet",
+  "name": "кошелёк",
+  "category": "деньги",
+  "keywords": "кошелёк деньги"
+ },
+ {
+  "file": "ic_lc_banknote",
+  "name": "купюра",
+  "category": "деньги",
+  "keywords": "деньги купюра наличные"
+ },
+ {
+  "file": "ic_lc_store",
+  "name": "магазин",
+  "category": "деньги",
+  "keywords": "магазин лавка"
+ },
+ {
+  "file": "ic_lc_coins",
+  "name": "монеты",
+  "category": "деньги",
+  "keywords": "монеты деньги"
+ },
+ {
+  "file": "ic_lc_shopping_bag",
+  "name": "пакет покупок",
+  "category": "деньги",
+  "keywords": "пакет магазин покупки"
+ },
+ {
+  "file": "ic_lc_gift",
+  "name": "подарок",
+  "category": "деньги",
+  "keywords": "подарок сюрприз"
+ },
+ {
+  "file": "ic_lc_briefcase",
+  "name": "портфель",
+  "category": "деньги",
+  "keywords": "портфель работа"
+ },
+ {
+  "file": "ic_lc_percent",
+  "name": "процент",
+  "category": "деньги",
+  "keywords": "процент скидка"
+ },
+ {
+  "file": "ic_lc_id_card",
+  "name": "удостоверение",
+  "category": "деньги",
+  "keywords": "документ пропуск"
+ },
+ {
+  "file": "ic_lc_receipt",
+  "name": "чек",
+  "category": "деньги",
+  "keywords": "чек квитанция"
+ },
+ {
+  "file": "ic_lc_newspaper",
+  "name": "газета",
+  "category": "интернет",
+  "keywords": "газета новости"
+ },
+ {
+  "file": "ic_lc_eye",
+  "name": "глаз",
+  "category": "интернет",
+  "keywords": "глаз видно просмотр"
+ },
+ {
+  "file": "ic_lc_gauge",
+  "name": "датчик",
+  "category": "интернет",
+  "keywords": "датчик шкала скорость"
+ },
+ {
+  "file": "ic_lc_home",
+  "name": "домой",
+  "category": "интернет",
+  "keywords": "дом главная"
+ },
+ {
+  "file": "ic_lc_bookmark",
+  "name": "закладка",
+  "category": "интернет",
+  "keywords": "закладка сохранить"
+ },
+ {
+  "file": "ic_lc_star",
+  "name": "звезда",
+  "category": "интернет",
+  "keywords": "звезда избранное"
+ },
+ {
+  "file": "ic_lc_bell_ring",
+  "name": "звонок",
+  "category": "интернет",
+  "keywords": "уведомление звонок"
+ },
+ {
+  "file": "ic_lc_history",
+  "name": "история",
+  "category": "интернет",
+  "keywords": "история часы назад"
+ },
+ {
+  "file": "ic_lc_map",
+  "name": "карта",
+  "category": "интернет",
+  "keywords": "карта местность"
+ },
+ {
+  "file": "ic_lc_bell",
+  "name": "колокольчик",
+  "category": "интернет",
+  "keywords": "уведомление звонок"
+ },
+ {
+  "file": "ic_lc_columns",
+  "name": "колонки",
+  "category": "интернет",
+  "keywords": "колонки раскладка"
+ },
+ {
+  "file": "ic_lc_compass",
+  "name": "компас",
+  "category": "интернет",
+  "keywords": "компас направление"
+ },
+ {
+  "file": "ic_lc_pie_chart",
+  "name": "круговая диаграмма",
+  "category": "интернет",
+  "keywords": "диаграмма круг статистика"
+ },
+ {
+  "file": "ic_lc_route",
+  "name": "маршрут",
+  "category": "интернет",
+  "keywords": "маршрут путь"
+ },
+ {
+  "file": "ic_lc_menu",
+  "name": "меню",
+  "category": "интернет",
+  "keywords": "меню три полоски"
+ },
+ {
+  "file": "ic_lc_tag",
+  "name": "метка",
+  "category": "интернет",
+  "keywords": "ярлык метка"
+ },
+ {
+  "file": "ic_lc_map_pinned",
+  "name": "метка на карте",
+  "category": "интернет",
+  "keywords": "метка место"
+ },
+ {
+  "file": "ic_lc_zap",
+  "name": "молния",
+  "category": "интернет",
+  "keywords": "молния быстро энергия"
+ },
+ {
+  "file": "ic_lc_navigation",
+  "name": "навигатор",
+  "category": "интернет",
+  "keywords": "навигация стрелка"
+ },
+ {
+  "file": "ic_lc_navigation_2",
+  "name": "навигация",
+  "category": "интернет",
+  "keywords": "навигация"
+ },
+ {
+  "file": "ic_lc_settings",
+  "name": "настройки",
+  "category": "интернет",
+  "keywords": "настройки шестерёнка"
+ },
+ {
+  "file": "ic_lc_puzzle",
+  "name": "пазл",
+  "category": "интернет",
+  "keywords": "пазл деталь"
+ },
+ {
+  "file": "ic_lc_layout_dashboard",
+  "name": "панель",
+  "category": "интернет",
+  "keywords": "панель дашборд"
+ },
+ {
+  "file": "ic_lc_search",
+  "name": "поиск",
+  "category": "интернет",
+  "keywords": "поиск лупа найти"
+ },
+ {
+  "file": "ic_lc_crosshair",
+  "name": "прицел",
+  "category": "интернет",
+  "keywords": "прицел центр"
+ },
+ {
+  "file": "ic_lc_activity",
+  "name": "пульс",
+  "category": "интернет",
+  "keywords": "активность пульс график"
+ },
+ {
+  "file": "ic_lc_sliders",
+  "name": "регуляторы",
+  "category": "интернет",
+  "keywords": "ползунки настройка"
+ },
+ {
+  "file": "ic_lc_trending_up",
+  "name": "рост",
+  "category": "интернет",
+  "keywords": "рост вверх график"
+ },
+ {
+  "file": "ic_lc_rows",
+  "name": "ряды",
+  "category": "интернет",
+  "keywords": "ряды строки раскладка"
+ },
+ {
+  "file": "ic_lc_heart",
+  "name": "сердце",
+  "category": "интернет",
+  "keywords": "сердце нравится"
+ },
+ {
+  "file": "ic_lc_layout_grid",
+  "name": "сетка",
+  "category": "интернет",
+  "keywords": "сетка плитка приложения"
+ },
+ {
+  "file": "ic_lc_eye_off",
+  "name": "скрыть",
+  "category": "интернет",
+  "keywords": "глаз скрыто невидимо"
+ },
+ {
+  "file": "ic_lc_layers",
+  "name": "слои",
+  "category": "интернет",
+  "keywords": "слои"
+ },
+ {
+  "file": "ic_lc_list",
+  "name": "список",
+  "category": "интернет",
+  "keywords": "список пункты"
+ },
+ {
+  "file": "ic_lc_bar_chart",
+  "name": "столбцы",
+  "category": "интернет",
+  "keywords": "график столбцы статистика"
+ },
+ {
+  "file": "ic_lc_grid_3x3",
+  "name": "таблица",
+  "category": "интернет",
+  "keywords": "сетка таблица"
+ },
+ {
+  "file": "ic_lc_map_pin",
+  "name": "точка на карте",
+  "category": "интернет",
+  "keywords": "метка карта адрес"
+ },
+ {
+  "file": "ic_lc_signpost",
+  "name": "указатель",
+  "category": "интернет",
+  "keywords": "указатель"
+ },
+ {
+  "file": "ic_lc_filter",
+  "name": "фильтр",
+  "category": "интернет",
+  "keywords": "фильтр воронка"
+ },
+ {
+  "file": "ic_lc_flag",
+  "name": "флаг",
+  "category": "интернет",
+  "keywords": "флаг отметка"
+ },
+ {
+  "file": "ic_lc_target",
+  "name": "цель",
+  "category": "интернет",
+  "keywords": "цель мишень"
+ },
+ {
+  "file": "ic_lc_milestone",
+  "name": "этап",
+  "category": "интернет",
+  "keywords": "этап веха"
+ },
+ {
+  "file": "ic_lc_contact",
+  "name": "контакт",
+  "category": "люди",
+  "keywords": "контакт визитка"
+ },
+ {
+  "file": "ic_lc_users",
+  "name": "люди",
+  "category": "люди",
+  "keywords": "люди группа"
+ },
+ {
+  "file": "ic_lc_thumbs_down",
+  "name": "не нравится",
+  "category": "люди",
+  "keywords": "палец вниз"
+ },
+ {
+  "file": "ic_lc_thumbs_up",
+  "name": "нравится",
+  "category": "люди",
+  "keywords": "палец вверх нравится"
+ },
+ {
+  "file": "ic_lc_hand",
+  "name": "рука",
+  "category": "люди",
+  "keywords": "рука стоп"
+ },
+ {
+  "file": "ic_lc_smile",
+  "name": "улыбка",
+  "category": "люди",
+  "keywords": "улыбка смайл"
+ },
+ {
+  "file": "ic_lc_user",
+  "name": "человек",
+  "category": "люди",
+  "keywords": "человек пользователь"
+ },
+ {
+  "file": "ic_lc_user_check",
+  "name": "человек подтверждён",
+  "category": "люди",
+  "keywords": "пользователь проверен"
+ },
+ {
+  "file": "ic_lc_spray_can",
+  "name": "баллончик",
+  "category": "медиа",
+  "keywords": "спрей"
+ },
+ {
+  "file": "ic_lc_volume_x",
+  "name": "без звука",
+  "category": "медиа",
+  "keywords": "звук выключен тишина"
+ },
+ {
+  "file": "ic_lc_paint_bucket",
+  "name": "ведро краски",
+  "category": "медиа",
+  "keywords": "краска заливка"
+ },
+ {
+  "file": "ic_lc_video",
+  "name": "видео",
+  "category": "медиа",
+  "keywords": "видео съёмка"
+ },
+ {
+  "file": "ic_lc_images",
+  "name": "галерея",
+  "category": "медиа",
+  "keywords": "фото галерея альбом"
+ },
+ {
+  "file": "ic_lc_disc",
+  "name": "диск",
+  "category": "медиа",
+  "keywords": "диск cd"
+ },
+ {
+  "file": "ic_lc_volume_2",
+  "name": "звук",
+  "category": "медиа",
+  "keywords": "звук громкость динамик"
+ },
+ {
+  "file": "ic_lc_play",
+  "name": "играть",
+  "category": "медиа",
+  "keywords": "плей играть запуск"
+ },
+ {
+  "file": "ic_lc_camera",
+  "name": "камера",
+  "category": "медиа",
+  "keywords": "камера фото"
+ },
+ {
+  "file": "ic_lc_pencil",
+  "name": "карандаш",
+  "category": "медиа",
+  "keywords": "карандаш правка"
+ },
+ {
+  "file": "ic_lc_image",
+  "name": "картинка",
+  "category": "медиа",
+  "keywords": "картинка фото изображение"
+ },
+ {
+  "file": "ic_lc_film",
+  "name": "кино",
+  "category": "медиа",
+  "keywords": "кино фильм"
+ },
+ {
+  "file": "ic_lc_brush",
+  "name": "кисть",
+  "category": "медиа",
+  "keywords": "кисть рисование"
+ },
+ {
+  "file": "ic_lc_eraser",
+  "name": "ластик",
+  "category": "медиа",
+  "keywords": "ластик стереть"
+ },
+ {
+  "file": "ic_lc_highlighter",
+  "name": "маркер",
+  "category": "медиа",
+  "keywords": "маркер выделить"
+ },
+ {
+  "file": "ic_lc_mic",
+  "name": "микрофон",
+  "category": "медиа",
+  "keywords": "микрофон запись голос"
+ },
+ {
+  "file": "ic_lc_mic_off",
+  "name": "микрофон выкл",
+  "category": "медиа",
+  "keywords": "микрофон выключен"
+ },
+ {
+  "file": "ic_lc_music",
+  "name": "музыка",
+  "category": "медиа",
+  "keywords": "музыка нота"
+ },
+ {
+  "file": "ic_lc_headphones",
+  "name": "наушники",
+  "category": "медиа",
+  "keywords": "наушники слушать"
+ },
+ {
+  "file": "ic_lc_palette",
+  "name": "палитра",
+  "category": "медиа",
+  "keywords": "палитра цвет краски"
+ },
+ {
+  "file": "ic_lc_pause",
+  "name": "пауза",
+  "category": "медиа",
+  "keywords": "пауза стоп"
+ },
+ {
+  "file": "ic_lc_pen_tool",
+  "name": "перо",
+  "category": "медиа",
+  "keywords": "перо вектор"
+ },
+ {
+  "file": "ic_lc_pipette",
+  "name": "пипетка",
+  "category": "медиа",
+  "keywords": "пипетка цвет"
+ },
+ {
+  "file": "ic_lc_podcast",
+  "name": "подкаст",
+  "category": "медиа",
+  "keywords": "подкаст"
+ },
+ {
+  "file": "ic_lc_projector",
+  "name": "проектор",
+  "category": "медиа",
+  "keywords": "проектор"
+ },
+ {
+  "file": "ic_lc_skip_forward",
+  "name": "следующий",
+  "category": "медиа",
+  "keywords": "следующий трек"
+ },
+ {
+  "file": "ic_lc_type",
+  "name": "текст",
+  "category": "медиа",
+  "keywords": "текст шрифт буква"
+ },
+ {
+  "file": "ic_lc_volume_1",
+  "name": "тихий звук",
+  "category": "медиа",
+  "keywords": "звук тихо"
+ },
+ {
+  "file": "ic_lc_clapperboard",
+  "name": "хлопушка",
+  "category": "медиа",
+  "keywords": "кино съёмка"
+ },
+ {
+  "file": "ic_lc_wind",
+  "name": "ветер",
+  "category": "погода",
+  "keywords": "ветер"
+ },
+ {
+  "file": "ic_lc_waves",
+  "name": "волны",
+  "category": "погода",
+  "keywords": "волны вода"
+ },
+ {
+  "file": "ic_lc_cloud_lightning",
+  "name": "гроза",
+  "category": "погода",
+  "keywords": "гроза молния"
+ },
+ {
+  "file": "ic_lc_sun_moon",
+  "name": "день и ночь",
+  "category": "погода",
+  "keywords": "день ночь"
+ },
+ {
+  "file": "ic_lc_cloud_rain",
+  "name": "дождь",
+  "category": "погода",
+  "keywords": "дождь облако"
+ },
+ {
+  "file": "ic_lc_sunset",
+  "name": "закат",
+  "category": "погода",
+  "keywords": "закат вечер"
+ },
+ {
+  "file": "ic_lc_umbrella",
+  "name": "зонт",
+  "category": "погода",
+  "keywords": "зонт дождь"
+ },
+ {
+  "file": "ic_lc_droplet",
+  "name": "капля",
+  "category": "погода",
+  "keywords": "капля вода влажность"
+ },
+ {
+  "file": "ic_lc_moon",
+  "name": "луна",
+  "category": "погода",
+  "keywords": "луна ночь"
+ },
+ {
+  "file": "ic_lc_cloud_drizzle",
+  "name": "морось",
+  "category": "погода",
+  "keywords": "дождик"
+ },
+ {
+  "file": "ic_lc_moon_star",
+  "name": "ночь",
+  "category": "погода",
+  "keywords": "ночь звёзды"
+ },
+ {
+  "file": "ic_lc_cloud_moon",
+  "name": "облачная ночь",
+  "category": "погода",
+  "keywords": "ночь облака"
+ },
+ {
+  "file": "ic_lc_cloudy",
+  "name": "облачно",
+  "category": "погода",
+  "keywords": "облака"
+ },
+ {
+  "file": "ic_lc_cloud_sun",
+  "name": "облачно с солнцем",
+  "category": "погода",
+  "keywords": "облачно солнце"
+ },
+ {
+  "file": "ic_lc_rainbow",
+  "name": "радуга",
+  "category": "погода",
+  "keywords": "радуга"
+ },
+ {
+  "file": "ic_lc_sunrise",
+  "name": "рассвет",
+  "category": "погода",
+  "keywords": "рассвет утро"
+ },
+ {
+  "file": "ic_lc_tornado",
+  "name": "смерч",
+  "category": "погода",
+  "keywords": "смерч ветер"
+ },
+ {
+  "file": "ic_lc_cloud_snow",
+  "name": "снег",
+  "category": "погода",
+  "keywords": "снег облако зима"
+ },
+ {
+  "file": "ic_lc_snowflake",
+  "name": "снежинка",
+  "category": "погода",
+  "keywords": "снежинка зима мороз"
+ },
+ {
+  "file": "ic_lc_sun",
+  "name": "солнце",
+  "category": "погода",
+  "keywords": "солнце ясно"
+ },
+ {
+  "file": "ic_lc_thermometer",
+  "name": "температура",
+  "category": "погода",
+  "keywords": "термометр температура"
+ },
+ {
+  "file": "ic_lc_bus",
+  "name": "автобус",
+  "category": "прочее",
+  "keywords": "автобус"
+ },
+ {
+  "file": "ic_lc_hospital",
+  "name": "больница",
+  "category": "прочее",
+  "keywords": "больница врач"
+ },
+ {
+  "file": "ic_lc_bike",
+  "name": "велосипед",
+  "category": "прочее",
+  "keywords": "велосипед"
+ },
+ {
+  "file": "ic_lc_dumbbell",
+  "name": "гантель",
+  "category": "прочее",
+  "keywords": "спорт гантель"
+ },
+ {
+  "file": "ic_lc_mountain",
+  "name": "гора",
+  "category": "прочее",
+  "keywords": "гора вершина"
+ },
+ {
+  "file": "ic_lc_trees",
+  "name": "деревья",
+  "category": "прочее",
+  "keywords": "деревья лес"
+ },
+ {
+  "file": "ic_lc_utensils",
+  "name": "еда",
+  "category": "прочее",
+  "keywords": "еда вилка ложка"
+ },
+ {
+  "file": "ic_lc_factory",
+  "name": "завод",
+  "category": "прочее",
+  "keywords": "завод производство"
+ },
+ {
+  "file": "ic_lc_hard_hat",
+  "name": "каска",
+  "category": "прочее",
+  "keywords": "каска стройка склад"
+ },
+ {
+  "file": "ic_lc_ship",
+  "name": "корабль",
+  "category": "прочее",
+  "keywords": "корабль море"
+ },
+ {
+  "file": "ic_lc_crown",
+  "name": "корона",
+  "category": "прочее",
+  "keywords": "корона"
+ },
+ {
+  "file": "ic_lc_coffee",
+  "name": "кофе",
+  "category": "прочее",
+  "keywords": "кофе чашка"
+ },
+ {
+  "file": "ic_lc_cat",
+  "name": "кошка",
+  "category": "прочее",
+  "keywords": "кошка кот"
+ },
+ {
+  "file": "ic_lc_gem",
+  "name": "кристалл",
+  "category": "прочее",
+  "keywords": "кристалл драгоценность"
+ },
+ {
+  "file": "ic_lc_trophy",
+  "name": "кубок",
+  "category": "прочее",
+  "keywords": "кубок победа"
+ },
+ {
+  "file": "ic_lc_ruler",
+  "name": "линейка",
+  "category": "прочее",
+  "keywords": "линейка размер"
+ },
+ {
+  "file": "ic_lc_leaf",
+  "name": "лист",
+  "category": "прочее",
+  "keywords": "лист природа"
+ },
+ {
+  "file": "ic_lc_car",
+  "name": "машина",
+  "category": "прочее",
+  "keywords": "машина авто"
+ },
+ {
+  "file": "ic_lc_car_front",
+  "name": "машина спереди",
+  "category": "прочее",
+  "keywords": "машина авто"
+ },
+ {
+  "file": "ic_lc_medal",
+  "name": "медаль",
+  "category": "прочее",
+  "keywords": "медаль награда"
+ },
+ {
+  "file": "ic_lc_award",
+  "name": "награда",
+  "category": "прочее",
+  "keywords": "награда"
+ },
+ {
+  "file": "ic_lc_flame",
+  "name": "огонь",
+  "category": "прочее",
+  "keywords": "огонь пламя"
+ },
+ {
+  "file": "ic_lc_glasses",
+  "name": "очки",
+  "category": "прочее",
+  "keywords": "очки"
+ },
+ {
+  "file": "ic_lc_tent",
+  "name": "палатка",
+  "category": "прочее",
+  "keywords": "палатка поход"
+ },
+ {
+  "file": "ic_lc_feather",
+  "name": "перо птицы",
+  "category": "прочее",
+  "keywords": "перо легкость"
+ },
+ {
+  "file": "ic_lc_train_front",
+  "name": "поезд",
+  "category": "прочее",
+  "keywords": "поезд транспорт"
+ },
+ {
+  "file": "ic_lc_rocket",
+  "name": "ракета",
+  "category": "прочее",
+  "keywords": "ракета запуск"
+ },
+ {
+  "file": "ic_lc_fish",
+  "name": "рыба",
+  "category": "прочее",
+  "keywords": "рыба"
+ },
+ {
+  "file": "ic_lc_plane",
+  "name": "самолёт",
+  "category": "прочее",
+  "keywords": "самолёт полёт"
+ },
+ {
+  "file": "ic_lc_warehouse",
+  "name": "склад",
+  "category": "прочее",
+  "keywords": "склад ангар"
+ },
+ {
+  "file": "ic_lc_dog",
+  "name": "собака",
+  "category": "прочее",
+  "keywords": "собака пёс"
+ },
+ {
+  "file": "ic_lc_stethoscope",
+  "name": "стетоскоп",
+  "category": "прочее",
+  "keywords": "врач"
+ },
+ {
+  "file": "ic_lc_construction",
+  "name": "стройка",
+  "category": "прочее",
+  "keywords": "стройка инструменты"
+ },
+ {
+  "file": "ic_lc_pill",
+  "name": "таблетка",
+  "category": "прочее",
+  "keywords": "таблетка лекарство"
+ },
+ {
+  "file": "ic_lc_fuel",
+  "name": "топливо",
+  "category": "прочее",
+  "keywords": "заправка бензин"
+ },
+ {
+  "file": "ic_lc_graduation_cap",
+  "name": "учёба",
+  "category": "прочее",
+  "keywords": "учёба шапка"
+ },
+ {
+  "file": "ic_lc_shirt",
+  "name": "футболка",
+  "category": "прочее",
+  "keywords": "одежда футболка"
+ },
+ {
+  "file": "ic_lc_luggage",
+  "name": "чемодан",
+  "category": "прочее",
+  "keywords": "чемодан поездка"
+ },
+ {
+  "file": "ic_lc_school",
+  "name": "школа",
+  "category": "прочее",
+  "keywords": "школа"
+ },
+ {
+  "file": "ic_lc_syringe",
+  "name": "шприц",
+  "category": "прочее",
+  "keywords": "шприц"
+ },
+ {
+  "file": "ic_lc_anchor",
+  "name": "якорь",
+  "category": "прочее",
+  "keywords": "якорь"
+ },
+ {
+  "file": "ic_lc_nfc",
+  "name": "nfc",
+  "category": "связь",
+  "keywords": "nfc метка бесконтактный"
+ },
+ {
+  "file": "ic_lc_bluetooth",
+  "name": "блютус",
+  "category": "связь",
+  "keywords": "bluetooth синий зуб"
+ },
+ {
+  "file": "ic_lc_wifi",
+  "name": "вай-фай",
+  "category": "связь",
+  "keywords": "wifi интернет сеть беспроводной"
+ },
+ {
+  "file": "ic_lc_wifi_off",
+  "name": "вай-фай выкл",
+  "category": "связь",
+  "keywords": "wifi нет сети отключено"
+ },
+ {
+  "file": "ic_lc_link_2",
+  "name": "звено",
+  "category": "связь",
+  "keywords": "связь звено"
+ },
+ {
+  "file": "ic_lc_globe",
+  "name": "интернет",
+  "category": "связь",
+  "keywords": "интернет планета сайт"
+ },
+ {
+  "file": "ic_lc_rss",
+  "name": "лента новостей",
+  "category": "связь",
+  "keywords": "rss новости лента"
+ },
+ {
+  "file": "ic_lc_monitor",
+  "name": "монитор",
+  "category": "связь",
+  "keywords": "монитор экран компьютер"
+ },
+ {
+  "file": "ic_lc_laptop",
+  "name": "ноутбук",
+  "category": "связь",
+  "keywords": "ноутбук компьютер"
+ },
+ {
+  "file": "ic_lc_cloud",
+  "name": "облако",
+  "category": "связь",
+  "keywords": "облако хранилище"
+ },
+ {
+  "file": "ic_lc_cloud_off",
+  "name": "облако выкл",
+  "category": "связь",
+  "keywords": "облако нет сети отключено"
+ },
+ {
+  "file": "ic_lc_refresh_cw",
+  "name": "обновить",
+  "category": "связь",
+  "keywords": "обновить перезагрузить"
+ },
+ {
+  "file": "ic_lc_external_link",
+  "name": "открыть ссылку",
+  "category": "связь",
+  "keywords": "ссылка переход наружу"
+ },
+ {
+  "file": "ic_lc_send",
+  "name": "отправить",
+  "category": "связь",
+  "keywords": "отправить самолётик сообщение"
+ },
+ {
+  "file": "ic_lc_upload",
+  "name": "отправить в облако",
+  "category": "связь",
+  "keywords": "отправить загрузка вверх"
+ },
+ {
+  "file": "ic_lc_tablet",
+  "name": "планшет",
+  "category": "связь",
+  "keywords": "планшет устройство"
+ },
+ {
+  "file": "ic_lc_share_2",
+  "name": "поделиться",
+  "category": "связь",
+  "keywords": "поделиться общий доступ"
+ },
+ {
+  "file": "ic_lc_share",
+  "name": "поделиться",
+  "category": "связь",
+  "keywords": "общий доступ"
+ },
+ {
+  "file": "ic_lc_phone_call",
+  "name": "позвонить",
+  "category": "связь",
+  "keywords": "звонок вызов телефон"
+ },
+ {
+  "file": "ic_lc_mail",
+  "name": "почта",
+  "category": "связь",
+  "keywords": "почта письмо email"
+ },
+ {
+  "file": "ic_lc_radio",
+  "name": "радио",
+  "category": "связь",
+  "keywords": "радио волна"
+ },
+ {
+  "file": "ic_lc_unlink",
+  "name": "разорвать связь",
+  "category": "связь",
+  "keywords": "разъединить"
+ },
+ {
+  "file": "ic_lc_router",
+  "name": "роутер",
+  "category": "связь",
+  "keywords": "роутер интернет"
+ },
+ {
+  "file": "ic_lc_server",
+  "name": "сервер",
+  "category": "связь",
+  "keywords": "сервер стойка данные"
+ },
+ {
+  "file": "ic_lc_signal",
+  "name": "сигнал",
+  "category": "связь",
+  "keywords": "сигнал сеть антенна"
+ },
+ {
+  "file": "ic_lc_download",
+  "name": "скачать",
+  "category": "связь",
+  "keywords": "скачать загрузка"
+ },
+ {
+  "file": "ic_lc_smartphone",
+  "name": "смартфон",
+  "category": "связь",
+  "keywords": "телефон смартфон"
+ },
+ {
+  "file": "ic_lc_at_sign",
+  "name": "собака почты",
+  "category": "связь",
+  "keywords": "почта email собака"
+ },
+ {
+  "file": "ic_lc_message_circle",
+  "name": "сообщение",
+  "category": "связь",
+  "keywords": "сообщение чат переписка"
+ },
+ {
+  "file": "ic_lc_satellite",
+  "name": "спутник",
+  "category": "связь",
+  "keywords": "спутник связь"
+ },
+ {
+  "file": "ic_lc_satellite_dish",
+  "name": "спутниковая антенна",
+  "category": "связь",
+  "keywords": "антенна тарелка"
+ },
+ {
+  "file": "ic_lc_link",
+  "name": "ссылка",
+  "category": "связь",
+  "keywords": "ссылка цепочка url"
+ },
+ {
+  "file": "ic_lc_phone",
+  "name": "телефон",
+  "category": "связь",
+  "keywords": "телефон звонок трубка"
+ },
+ {
+  "file": "ic_lc_cast",
+  "name": "трансляция",
+  "category": "связь",
+  "keywords": "трансляция экран cast"
+ },
+ {
+  "file": "ic_lc_message_square",
+  "name": "чат",
+  "category": "связь",
+  "keywords": "чат сообщение диалог"
+ },
+ {
+  "file": "ic_lc_chevron_up",
+  "name": "вверх",
+  "category": "стрелки",
+  "keywords": "вверх галочка"
+ },
+ {
+  "file": "ic_lc_corner_down_right",
+  "name": "ввод",
+  "category": "стрелки",
+  "keywords": "ввод enter"
+ },
+ {
+  "file": "ic_lc_chevron_down",
+  "name": "вниз",
+  "category": "стрелки",
+  "keywords": "вниз галочка"
+ },
+ {
+  "file": "ic_lc_chevrons_down",
+  "name": "вниз до конца",
+  "category": "стрелки",
+  "keywords": "вниз двойная"
+ },
+ {
+  "file": "ic_lc_chevrons_up",
+  "name": "наверх",
+  "category": "стрелки",
+  "keywords": "наверх двойная"
+ },
+ {
+  "file": "ic_lc_rotate_ccw",
+  "name": "отменить",
+  "category": "стрелки",
+  "keywords": "отменить назад"
+ },
+ {
+  "file": "ic_lc_move",
+  "name": "переместить",
+  "category": "стрелки",
+  "keywords": "перемещение крест"
+ },
+ {
+  "file": "ic_lc_shuffle",
+  "name": "перемешать",
+  "category": "стрелки",
+  "keywords": "перемешать случайно"
+ },
+ {
+  "file": "ic_lc_repeat",
+  "name": "повторить",
+  "category": "стрелки",
+  "keywords": "повтор цикл"
+ },
+ {
+  "file": "ic_lc_maximize",
+  "name": "развернуть",
+  "category": "стрелки",
+  "keywords": "развернуть увеличить"
+ },
+ {
+  "file": "ic_lc_minimize",
+  "name": "свернуть",
+  "category": "стрелки",
+  "keywords": "свернуть уменьшить"
+ },
+ {
+  "file": "ic_lc_arrow_up",
+  "name": "стрелка вверх",
+  "category": "стрелки",
+  "keywords": "вверх стрелка"
+ },
+ {
+  "file": "ic_lc_arrow_left",
+  "name": "стрелка влево",
+  "category": "стрелки",
+  "keywords": "влево назад"
+ },
+ {
+  "file": "ic_lc_arrow_down",
+  "name": "стрелка вниз",
+  "category": "стрелки",
+  "keywords": "вниз стрелка"
+ },
+ {
+  "file": "ic_lc_arrow_right",
+  "name": "стрелка вправо",
+  "category": "стрелки",
+  "keywords": "вправо вперёд"
+ },
+ {
+  "file": "ic_lc_usb",
+  "name": "usb",
+  "category": "устройства",
+  "keywords": "usb разъём"
+ },
+ {
+  "file": "ic_lc_battery",
+  "name": "батарея",
+  "category": "устройства",
+  "keywords": "батарея заряд"
+ },
+ {
+  "file": "ic_lc_battery_low",
+  "name": "батарея низкая",
+  "category": "устройства",
+  "keywords": "заряд низкий"
+ },
+ {
+  "file": "ic_lc_battery_full",
+  "name": "батарея полная",
+  "category": "устройства",
+  "keywords": "заряд полный"
+ },
+ {
+  "file": "ic_lc_battery_warning",
+  "name": "батарея разряжена",
+  "category": "устройства",
+  "keywords": "заряд мало"
+ },
+ {
+  "file": "ic_lc_alarm_clock",
+  "name": "будильник",
+  "category": "устройства",
+  "keywords": "будильник время"
+ },
+ {
+  "file": "ic_lc_webcam",
+  "name": "веб-камера",
+  "category": "устройства",
+  "keywords": "камера веб"
+ },
+ {
+  "file": "ic_lc_fan",
+  "name": "вентилятор",
+  "category": "устройства",
+  "keywords": "вентилятор обдув"
+ },
+ {
+  "file": "ic_lc_plug",
+  "name": "вилка",
+  "category": "устройства",
+  "keywords": "вилка розетка питание"
+ },
+ {
+  "file": "ic_lc_power",
+  "name": "включить",
+  "category": "устройства",
+  "keywords": "питание кнопка включить"
+ },
+ {
+  "file": "ic_lc_power_off",
+  "name": "выключить",
+  "category": "устройства",
+  "keywords": "выключить питание"
+ },
+ {
+  "file": "ic_lc_wrench",
+  "name": "гаечный ключ",
+  "category": "устройства",
+  "keywords": "ключ ремонт инструмент"
+ },
+ {
+  "file": "ic_lc_gamepad_2",
+  "name": "геймпад",
+  "category": "устройства",
+  "keywords": "игры джойстик"
+ },
+ {
+  "file": "ic_lc_speaker",
+  "name": "динамик",
+  "category": "устройства",
+  "keywords": "динамик колонка"
+ },
+ {
+  "file": "ic_lc_battery_charging",
+  "name": "зарядка",
+  "category": "устройства",
+  "keywords": "зарядка батарея"
+ },
+ {
+  "file": "ic_lc_cable",
+  "name": "кабель",
+  "category": "устройства",
+  "keywords": "кабель провод"
+ },
+ {
+  "file": "ic_lc_calendar",
+  "name": "календарь",
+  "category": "устройства",
+  "keywords": "календарь дата"
+ },
+ {
+  "file": "ic_lc_keyboard",
+  "name": "клавиатура",
+  "category": "устройства",
+  "keywords": "клавиатура ввод"
+ },
+ {
+  "file": "ic_lc_lightbulb",
+  "name": "лампа",
+  "category": "устройства",
+  "keywords": "лампа идея свет"
+ },
+ {
+  "file": "ic_lc_hammer",
+  "name": "молоток",
+  "category": "устройства",
+  "keywords": "молоток ремонт"
+ },
+ {
+  "file": "ic_lc_mouse",
+  "name": "мышь",
+  "category": "устройства",
+  "keywords": "мышь курсор"
+ },
+ {
+  "file": "ic_lc_hourglass",
+  "name": "песочные часы",
+  "category": "устройства",
+  "keywords": "песочные часы ожидание"
+ },
+ {
+  "file": "ic_lc_plug_zap",
+  "name": "питание",
+  "category": "устройства",
+  "keywords": "питание электричество"
+ },
+ {
+  "file": "ic_lc_cpu",
+  "name": "процессор",
+  "category": "устройства",
+  "keywords": "процессор чип"
+ },
+ {
+  "file": "ic_lc_timer",
+  "name": "таймер",
+  "category": "устройства",
+  "keywords": "таймер отсчёт"
+ },
+ {
+  "file": "ic_lc_tv",
+  "name": "телевизор",
+  "category": "устройства",
+  "keywords": "телевизор экран"
+ },
+ {
+  "file": "ic_lc_flashlight",
+  "name": "фонарик",
+  "category": "устройства",
+  "keywords": "фонарик свет"
+ },
+ {
+  "file": "ic_lc_clock",
+  "name": "часы",
+  "category": "устройства",
+  "keywords": "часы время"
+ },
+ {
+  "file": "ic_lc_watch",
+  "name": "часы наручные",
+  "category": "устройства",
+  "keywords": "часы наручные"
+ },
+ {
+  "file": "ic_lc_monitor_smartphone",
+  "name": "экран и телефон",
+  "category": "устройства",
+  "keywords": "устройства связка"
+ },
+ {
+  "file": "ic_lc_qr_code",
+  "name": "qr-код",
+  "category": "файлы",
+  "keywords": "qr код квадрат"
+ },
+ {
+  "file": "ic_lc_archive",
+  "name": "архив",
+  "category": "файлы",
+  "keywords": "архив коробка сжать"
+ },
+ {
+  "file": "ic_lc_database",
+  "name": "база данных",
+  "category": "файлы",
+  "keywords": "база данных бд"
+ },
+ {
+  "file": "ic_lc_notebook_pen",
+  "name": "блокнот",
+  "category": "файлы",
+  "keywords": "блокнот записи"
+ },
+ {
+  "file": "ic_lc_clipboard",
+  "name": "буфер обмена",
+  "category": "файлы",
+  "keywords": "буфер планшетка заметки"
+ },
+ {
+  "file": "ic_lc_git_branch",
+  "name": "ветка",
+  "category": "файлы",
+  "keywords": "git ветка"
+ },
+ {
+  "file": "ic_lc_inbox",
+  "name": "входящие",
+  "category": "файлы",
+  "keywords": "входящие ящик"
+ },
+ {
+  "file": "ic_lc_scissors",
+  "name": "вырезать",
+  "category": "файлы",
+  "keywords": "вырезать ножницы"
+ },
+ {
+  "file": "ic_lc_truck",
+  "name": "грузовик",
+  "category": "файлы",
+  "keywords": "грузовик доставка"
+ },
+ {
+  "file": "ic_lc_file_text",
+  "name": "документ",
+  "category": "файлы",
+  "keywords": "файл текст документ"
+ },
+ {
+  "file": "ic_lc_hard_drive",
+  "name": "жёсткий диск",
+  "category": "файлы",
+  "keywords": "диск жёсткий накопитель"
+ },
+ {
+  "file": "ic_lc_sticky_note",
+  "name": "заметка",
+  "category": "файлы",
+  "keywords": "заметка стикер"
+ },
+ {
+  "file": "ic_lc_book",
+  "name": "книга",
+  "category": "файлы",
+  "keywords": "книга чтение"
+ },
+ {
+  "file": "ic_lc_code",
+  "name": "код",
+  "category": "файлы",
+  "keywords": "код программирование"
+ },
+ {
+  "file": "ic_lc_copy",
+  "name": "копировать",
+  "category": "файлы",
+  "keywords": "копировать дубликат"
+ },
+ {
+  "file": "ic_lc_boxes",
+  "name": "коробки",
+  "category": "файлы",
+  "keywords": "коробки склад груз"
+ },
+ {
+  "file": "ic_lc_folder_plus",
+  "name": "новая папка",
+  "category": "файлы",
+  "keywords": "папка создать добавить"
+ },
+ {
+  "file": "ic_lc_package_plus",
+  "name": "новая посылка",
+  "category": "файлы",
+  "keywords": "посылка добавить"
+ },
+ {
+  "file": "ic_lc_file_plus",
+  "name": "новый файл",
+  "category": "файлы",
+  "keywords": "файл создать"
+ },
+ {
+  "file": "ic_lc_book_open",
+  "name": "открытая книга",
+  "category": "файлы",
+  "keywords": "книга чтение открытая"
+ },
+ {
+  "file": "ic_lc_folder_open",
+  "name": "открытая папка",
+  "category": "файлы",
+  "keywords": "папка открыть каталог"
+ },
+ {
+  "file": "ic_lc_folder",
+  "name": "папка",
+  "category": "файлы",
+  "keywords": "папка каталог"
+ },
+ {
+  "file": "ic_lc_folder_search",
+  "name": "поиск в папке",
+  "category": "файлы",
+  "keywords": "папка поиск"
+ },
+ {
+  "file": "ic_lc_file_search",
+  "name": "поиск в файле",
+  "category": "файлы",
+  "keywords": "файл поиск"
+ },
+ {
+  "file": "ic_lc_package",
+  "name": "посылка",
+  "category": "файлы",
+  "keywords": "посылка коробка груз"
+ },
+ {
+  "file": "ic_lc_package_check",
+  "name": "посылка проверена",
+  "category": "файлы",
+  "keywords": "посылка проверено"
+ },
+ {
+  "file": "ic_lc_printer",
+  "name": "принтер",
+  "category": "файлы",
+  "keywords": "принтер печать"
+ },
+ {
+  "file": "ic_lc_scan",
+  "name": "сканер",
+  "category": "файлы",
+  "keywords": "сканер сканировать"
+ },
+ {
+  "file": "ic_lc_scan_line",
+  "name": "сканер",
+  "category": "файлы",
+  "keywords": "сканер штрих"
+ },
+ {
+  "file": "ic_lc_paperclip",
+  "name": "скрепка",
+  "category": "файлы",
+  "keywords": "скрепка вложение"
+ },
+ {
+  "file": "ic_lc_save",
+  "name": "сохранить",
+  "category": "файлы",
+  "keywords": "сохранить дискета"
+ },
+ {
+  "file": "ic_lc_clipboard_list",
+  "name": "список задач",
+  "category": "файлы",
+  "keywords": "список задач планшетка"
+ },
+ {
+  "file": "ic_lc_terminal",
+  "name": "терминал",
+  "category": "файлы",
+  "keywords": "терминал консоль"
+ },
+ {
+  "file": "ic_lc_trash_2",
+  "name": "удалить",
+  "category": "файлы",
+  "keywords": "удалить корзина мусор"
+ },
+ {
+  "file": "ic_lc_file",
+  "name": "файл",
+  "category": "файлы",
+  "keywords": "файл документ"
+ },
+ {
+  "file": "ic_lc_file_check",
+  "name": "файл готов",
+  "category": "файлы",
+  "keywords": "файл проверено готово"
+ },
+ {
+  "file": "ic_lc_file_code",
+  "name": "файл кода",
+  "category": "файлы",
+  "keywords": "файл код"
+ },
+ {
+  "file": "ic_lc_list_checks",
+  "name": "чек-лист",
+  "category": "файлы",
+  "keywords": "список проверка задачи"
+ },
+ {
+  "file": "ic_lc_barcode",
+  "name": "штрих-код",
+  "category": "файлы",
+  "keywords": "штрих код сканер склад"
+ }
+]

@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +63,35 @@ class CellEditorActivity : AppCompatActivity() {
         })
 
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
+        findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
+    }
+
+    private fun pickIcon() {
+        val cell = store.load(widgetId)?.cellAt(slot)
+        if (cell == null) {
+            Toast.makeText(this, getString(R.string.icon_need_app), Toast.LENGTH_SHORT).show()
+            return
+        }
+        startActivityForResult(
+            Intent(this, IconPickerActivity::class.java)
+                .putExtra(IconPickerActivity.EXTRA_COLOR, cell.color),
+            REQUEST_ICON
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode != REQUEST_ICON || resultCode != RESULT_OK || data == null) return
+
+        val icon = data.getStringExtra(IconPickerActivity.EXTRA_ICON) ?: return
+        val color = data.getIntExtra(IconPickerActivity.EXTRA_COLOR, 0xFFFFFFFF.toInt())
+
+        val config = store.load(widgetId) ?: return
+        val cell = config.cellAt(slot) ?: return
+        config.put(cell.copy(icon = icon.ifEmpty { null }, color = color))
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        setResult(RESULT_OK)
     }
 
     private fun chooseApp(entry: AppCatalog.AppEntry) {
@@ -93,6 +123,7 @@ class CellEditorActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val REQUEST_ICON = 202
         const val EXTRA_SLOT = "slot"
         const val EXTRA_ROW = "row"
         const val EXTRA_COL = "col"
