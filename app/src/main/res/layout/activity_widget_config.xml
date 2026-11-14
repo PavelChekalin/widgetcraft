@@ -110,6 +110,19 @@
             android:text="@string/config_hint"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/tvSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnFit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fit_size" />
+
         <Button
             android:id="@+id/btnPresets"
             android:layout_width="match_parent"

@@ -145,6 +145,13 @@
             android:inputType="text"
             android:maxLines="2" />
 
+        <Button
+            android:id="@+id/btnCommandLibrary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/command_library"
+            android:textSize="12sp" />
+
         <EditText
             android:id="@+id/etCommandLabel"
             android:layout_width="match_parent"

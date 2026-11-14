@@ -73,4 +73,10 @@
     <string name="backup_empty">В файле нет настроек виджетов</string>
     <string name="duplicate">Копия</string>
     <string name="duplicate_hint">Подтверди добавление копии виджета на рабочий стол</string>
+    <string name="fit_size">Подогнать под размер на столе</string>
+    <string name="size_on_desk">На столе: %1$d×%2$d клеток</string>
+    <string name="size_unknown">Размер виджета пока неизвестен — подожди обновления</string>
+    <string name="size_fitted">Сетка подогнана: %1$d×%2$d</string>
+    <string name="command_library">Библиотека команд</string>
+    <string name="command_library_title">Готовые команды</string>
 </resources>

@@ -47,7 +47,8 @@ class WidgetConfigActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnRowsMinus).setOnClickListener { changeRows(-1) }
         findViewById<Button>(R.id.btnRowsPlus).setOnClickListener { changeRows(1) }
         findViewById<Button>(R.id.btnDone).setOnClickListener { saveAndFinish() }
-findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
+        findViewById<Button>(R.id.btnFit).setOnClickListener { fitToSize() }
+        findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         findViewById<Button>(R.id.btnStyle).setOnClickListener {
             startActivity(
                 Intent(this, WidgetStyleActivity::class.java)
@@ -56,10 +57,46 @@ findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         }
 
         updateCounters()
+        updateSizeHint()
         renderPreview()
     }
 
-/** Если виджет добавлен кнопкой «Копия», забираем настройки исходного. */
+    /** Подгоняет сетку под реальный размер виджета на столе (70dp на клетку). */
+    private fun fitToSize() {
+        val options = AppWidgetManager.getInstance(this).getAppWidgetOptions(widgetId)
+        val width = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0)
+        val height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 0)
+        if (width <= 0 || height <= 0) {
+            Toast.makeText(this, getString(R.string.size_unknown), Toast.LENGTH_SHORT).show()
+            return
+        }
+        config.cols = ((width + 30) / 70).coerceIn(MIN_COLS, MAX_COLS)
+        config.rows = ((height + 30) / 70).coerceIn(MIN_ROWS, MAX_ROWS)
+        pruneCells()
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        updateCounters()
+        updateSizeHint()
+        renderPreview()
+        Toast.makeText(
+            this,
+            getString(R.string.size_fitted, config.cols, config.rows),
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun updateSizeHint() {
+        val options = AppWidgetManager.getInstance(this).getAppWidgetOptions(widgetId)
+        val width = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 0)
+        val height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 0)
+        findViewById<TextView>(R.id.tvSize).text = if (width <= 0 || height <= 0) {
+            getString(R.string.size_unknown)
+        } else {
+            getString(R.string.size_on_desk, (width + 30) / 70, (height + 30) / 70)
+        }
+    }
+
+    /** Если виджет добавлен кнопкой «Копия», забираем настройки исходного. */
     private fun pendingCopyConfig(): WidgetConfig? {
         val prefs = getSharedPreferences("widgetplus", MODE_PRIVATE)
         val sourceId = prefs.getInt(MainActivity.KEY_PENDING_COPY, -1)
@@ -76,6 +113,7 @@ findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         pruneCells()
         store.save(widgetId, config)
         updateCounters()
+        updateSizeHint()
         renderPreview()
     }
 
@@ -84,6 +122,7 @@ findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         pruneCells()
         store.save(widgetId, config)
         updateCounters()
+        updateSizeHint()
         renderPreview()
     }
 
@@ -182,7 +221,7 @@ findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         }
     }
 
-private fun showPresets() {
+    private fun showPresets() {
         val presets = Presets.builtin()
         val names = presets.map { "${it.name} — ${it.description}" }.toTypedArray()
         AlertDialog.Builder(this)

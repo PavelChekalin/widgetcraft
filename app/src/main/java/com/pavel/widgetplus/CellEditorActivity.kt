@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,6 +72,7 @@ class CellEditorActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
         findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
+        findViewById<Button>(R.id.btnCommandLibrary).setOnClickListener { showCommandLibrary() }
 
         prefillFromExisting()
     }
@@ -171,6 +173,22 @@ class CellEditorActivity : AppCompatActivity() {
         CraftWidgetProvider.updateWidget(this, widgetId)
         setResult(RESULT_OK)
         finish()
+    }
+
+/** Готовые команды, чтобы не вписывать пакет и действие руками. */
+    private fun showCommandLibrary() {
+        val commands = KnownCommands.all()
+        val names = commands.map { it.label }.toTypedArray()
+        AlertDialog.Builder(this)
+            .setTitle(R.string.command_library_title)
+            .setItems(names) { _, which ->
+                val command = commands[which]
+                findViewById<EditText>(R.id.etPkg).setText(command.packageName)
+                findViewById<EditText>(R.id.etComponent).setText(command.component)
+                findViewById<EditText>(R.id.etAction).setText(command.action)
+                findViewById<EditText>(R.id.etCommandLabel).setText(command.label)
+            }
+            .show()
     }
 
     private fun saveActionCell() {
