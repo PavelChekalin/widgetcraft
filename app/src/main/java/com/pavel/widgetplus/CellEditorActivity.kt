@@ -169,7 +169,8 @@ class CellEditorActivity : AppCompatActivity() {
                 page = page,
                 type = "app",
                 label = entry.label,
-                icon = previous?.icon,
+                // Если это была заготовка без приложения, берём родную иконку.
+                icon = previous?.icon?.takeIf { previous.pkg != null },
                 color = previous?.color ?: 0xFFFFFFFF.toInt(),
                 pkg = entry.packageName,
                 extra = entry.activityName
