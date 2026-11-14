@@ -3,6 +3,7 @@ package com.pavel.widgetplus
 import android.app.PendingIntent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.provider.DocumentsContract
 import android.content.Context
 import android.content.Intent
 import android.net.Uri

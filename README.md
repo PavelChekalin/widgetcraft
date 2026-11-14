@@ -44,6 +44,9 @@ adb -s <устройство> install -r app\build\outputs\apk\debug\app-debug.a
 
 ## Особенности Android, из-за которых код выглядит именно так
 
+- Список приложений виден только при наличии блока <queries> с MAIN/LAUNCHER в манифесте: без него Android 11+ отдаёт вместо списка APK несколько системных приложений.
+- Папка открывается системным проводником через content://com.android.externalstorage.documents/document/primary:<путь> с типом «папка» — тот же приём, что в виджете «Мост».
+
 - `targetCellWidth/targetCellHeight` в `appwidget-provider` **не задаются**: лаунчер Realme
   при их наличии раздувает высоту виджета до 3 клеток.
 - В RemoteViews нельзя динамически добавлять вьюхи, а `GridLayout` доступен только с API 31 —
@@ -65,4 +68,5 @@ adb -s <устройство> install -r app\build\outputs\apk\debug\app-debug.a
   Простой тап по карточке в этом лаунчере не работает.
 - Настройка открывается сама после перетаскивания; «Назад» отменяет добавление.
 - Нажатия проверяются по журналу: `adb logcat -s WidgetPlus` (строка `cell click slot=...`).
+
 

@@ -4,6 +4,14 @@
     <!-- Нужно, чтобы понимать, включён ли VPN (индикатор переключателя). -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Без этого Android 11+ отдаёт только системные приложения вместо списка APK. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

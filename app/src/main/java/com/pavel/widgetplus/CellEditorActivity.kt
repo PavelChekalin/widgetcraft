@@ -71,6 +71,7 @@ class CellEditorActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnTypeApp).setOnClickListener { setMode(TYPE_APP) }
         findViewById<Button>(R.id.btnTypeLink).setOnClickListener { setMode(TYPE_LINK) }
         findViewById<Button>(R.id.btnTypeCommand).setOnClickListener { setMode(TYPE_COMMAND) }
+        findViewById<Button>(R.id.btnTypeFolder).setOnClickListener { setMode(TYPE_FOLDER) }
         findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
         findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
@@ -109,12 +110,15 @@ class CellEditorActivity : AppCompatActivity() {
             if (mode == TYPE_LINK) View.VISIBLE else View.GONE
         findViewById<LinearLayout>(R.id.commandBlock).visibility =
             if (mode == TYPE_COMMAND) View.VISIBLE else View.GONE
+        findViewById<LinearLayout>(R.id.folderBlock).visibility =
+            if (mode == TYPE_FOLDER) View.VISIBLE else View.GONE
         findViewById<Button>(R.id.btnSave).visibility =
             if (mode == TYPE_APP) View.GONE else View.VISIBLE
 
         findViewById<Button>(R.id.btnTypeApp).alpha = if (mode == TYPE_APP) 1f else 0.55f
         findViewById<Button>(R.id.btnTypeLink).alpha = if (mode == TYPE_LINK) 1f else 0.55f
         findViewById<Button>(R.id.btnTypeCommand).alpha = if (mode == TYPE_COMMAND) 1f else 0.55f
+        findViewById<Button>(R.id.btnTypeFolder).alpha = if (mode == TYPE_FOLDER) 1f else 0.55f
     }
 
     private fun pickIcon() {
@@ -271,7 +275,26 @@ class CellEditorActivity : AppCompatActivity() {
         }
         val color = previous?.color ?: 0xFFFFFFFF.toInt()
 
-        if (mode == TYPE_LINK) {
+        if (mode == TYPE_FOLDER) {
+            val path = findViewById<EditText>(R.id.etFolderPath).text.toString().trim().trim('/')
+            if (path.isEmpty()) {
+                Toast.makeText(this, getString(R.string.folder_empty), Toast.LENGTH_SHORT).show()
+                return
+            }
+            val label = findViewById<EditText>(R.id.etFolderLabel).text.toString().trim()
+                .ifEmpty { path.substringAfterLast('/') }
+            config.put(
+                CellConfig(
+                    index = slot,
+                    page = page,
+                    type = "folder",
+                    label = label,
+                    icon = icon,
+                    color = color,
+                    extra = path
+                )
+            )
+        } else if (mode == TYPE_LINK) {
             val url = findViewById<EditText>(R.id.etUrl).text.toString().trim()
             if (url.isEmpty()) {
                 Toast.makeText(this, getString(R.string.link_empty), Toast.LENGTH_SHORT).show()
@@ -339,6 +362,7 @@ class CellEditorActivity : AppCompatActivity() {
         private const val TYPE_APP = "app"
         private const val TYPE_LINK = "link"
         private const val TYPE_COMMAND = "command"
+        private const val TYPE_FOLDER = "folder"
 
         const val EXTRA_SLOT = "slot"
         const val EXTRA_ROW = "row"

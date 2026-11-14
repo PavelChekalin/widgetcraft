@@ -56,6 +56,14 @@
             android:textSize="12sp" />
 
         <Button
+            android:id="@+id/btnTypeFolder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/type_folder"
+            android:textSize="12sp" />
+
+        <Button
             android:id="@+id/btnTypeCommand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -113,6 +121,30 @@
             android:maxLines="1" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/folderBlock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/etFolderPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/folder_path"
+            android:inputType="text"
+            android:maxLines="2" />
+
+        <EditText
+            android:id="@+id/etFolderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/action_label"
+            android:inputType="text"
+            android:maxLines="1" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/commandBlock"
         android:layout_width="match_parent"

@@ -84,4 +84,7 @@
     <string name="type_pager">Страница →</string>
     <string name="command_make_toggle">Сделать переключателем</string>
     <string name="toggle_saved">Ячейка стала переключателем</string>
+    <string name="type_folder">Папка</string>
+    <string name="folder_path">Папка в памяти телефона, например SHARE или Download/SHARE</string>
+    <string name="folder_empty">Введи имя папки</string>
 </resources>
