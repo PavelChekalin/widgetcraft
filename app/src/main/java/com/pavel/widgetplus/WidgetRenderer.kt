@@ -98,13 +98,13 @@ class WidgetRenderer(private val context: Context) {
         context.resources.getIdentifier(name, "id", context.packageName)
 
 /** Включён ли сейчас VPN — видно по активному соединению, без разрешений. */
-    private fun isVpnOn(): Boolean {
+    private fun isVpnOn(): Boolean = runCatching {
         val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
-            ?: return false
-        val network = manager.activeNetwork ?: return false
-        val capabilities = manager.getNetworkCapabilities(network) ?: return false
-        return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
-    }
+            ?: return@runCatching false
+        val network = manager.activeNetwork ?: return@runCatching false
+        val capabilities = manager.getNetworkCapabilities(network) ?: return@runCatching false
+        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+    }.getOrDefault(false)
 
     private fun cellPendingIntent(widgetId: Int, slot: Int, cell: CellConfig): PendingIntent {
         val requestCode = widgetId * 100 + slot
