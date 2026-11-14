@@ -11,7 +11,8 @@ data class CellConfig(
     val icon: String? = null,
     val color: Int = 0xFFFFFFFF.toInt(),
     val pkg: String? = null,
-    val extra: String? = null
+    val extra: String? = null,
+    val action: String? = null
 )
 
 data class WidgetConfig(

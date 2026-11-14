@@ -2,6 +2,7 @@ package com.pavel.widgetplus
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +22,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Выбор содержимого ячейки: пока только приложение и «пусто».
- * Ссылки и команды добавятся отдельными вкладками позже.
+ * Выбор содержимого ячейки: приложение, ссылка или команда-broadcast.
+ * Для ссылки и команды иконка обязательна — родной иконки у них нет.
  */
 class CellEditorActivity : AppCompatActivity() {
 
@@ -30,6 +32,7 @@ class CellEditorActivity : AppCompatActivity() {
 
     private var widgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private var slot = 0
+    private var mode = TYPE_APP
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,19 +65,61 @@ class CellEditorActivity : AppCompatActivity() {
             }
         })
 
-        findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
+        findViewById<Button>(R.id.btnTypeApp).setOnClickListener { setMode(TYPE_APP) }
+        findViewById<Button>(R.id.btnTypeLink).setOnClickListener { setMode(TYPE_LINK) }
+        findViewById<Button>(R.id.btnTypeCommand).setOnClickListener { setMode(TYPE_COMMAND) }
         findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
+        findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
+        findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
+
+        prefillFromExisting()
+    }
+
+    /** Если ячейка уже настроена, открываем её на нужной вкладке с готовыми полями. */
+    private fun prefillFromExisting() {
+        val cell = store.load(widgetId)?.cellAt(slot) ?: return
+        when (cell.type) {
+            "link" -> {
+                setMode(TYPE_LINK)
+                findViewById<EditText>(R.id.etUrl).setText(cell.extra.orEmpty())
+                findViewById<EditText>(R.id.etLinkLabel).setText(cell.label)
+            }
+            "command" -> {
+                setMode(TYPE_COMMAND)
+                findViewById<EditText>(R.id.etPkg).setText(cell.pkg.orEmpty())
+                findViewById<EditText>(R.id.etComponent).setText(cell.extra.orEmpty())
+                findViewById<EditText>(R.id.etAction).setText(cell.action.orEmpty())
+                findViewById<EditText>(R.id.etCommandLabel).setText(cell.label)
+            }
+            else -> setMode(TYPE_APP)
+        }
+    }
+
+    private fun setMode(newMode: String) {
+        mode = newMode
+        findViewById<LinearLayout>(R.id.appsBlock).visibility =
+            if (mode == TYPE_APP) View.VISIBLE else View.GONE
+        findViewById<LinearLayout>(R.id.linkBlock).visibility =
+            if (mode == TYPE_LINK) View.VISIBLE else View.GONE
+        findViewById<LinearLayout>(R.id.commandBlock).visibility =
+            if (mode == TYPE_COMMAND) View.VISIBLE else View.GONE
+        findViewById<Button>(R.id.btnSave).visibility =
+            if (mode == TYPE_APP) View.GONE else View.VISIBLE
+
+        findViewById<Button>(R.id.btnTypeApp).alpha = if (mode == TYPE_APP) 1f else 0.55f
+        findViewById<Button>(R.id.btnTypeLink).alpha = if (mode == TYPE_LINK) 1f else 0.55f
+        findViewById<Button>(R.id.btnTypeCommand).alpha = if (mode == TYPE_COMMAND) 1f else 0.55f
     }
 
     private fun pickIcon() {
         val cell = store.load(widgetId)?.cellAt(slot)
-        if (cell == null) {
+        if (cell == null && mode == TYPE_APP) {
             Toast.makeText(this, getString(R.string.icon_need_app), Toast.LENGTH_SHORT).show()
             return
         }
         startActivityForResult(
             Intent(this, IconPickerActivity::class.java)
-                .putExtra(IconPickerActivity.EXTRA_COLOR, cell.color),
+                .putExtra(IconPickerActivity.EXTRA_COLOR, cell?.color ?: 0xFFFFFFFF.toInt()),
             REQUEST_ICON
         )
     }
@@ -87,8 +132,22 @@ class CellEditorActivity : AppCompatActivity() {
         val color = data.getIntExtra(IconPickerActivity.EXTRA_COLOR, 0xFFFFFFFF.toInt())
 
         val config = store.load(widgetId) ?: return
-        val cell = config.cellAt(slot) ?: return
-        config.put(cell.copy(icon = icon.ifEmpty { null }, color = color))
+        val cell = config.cellAt(slot)
+
+        if (cell != null) {
+            config.put(cell.copy(icon = icon.ifEmpty { null }, color = color))
+        } else {
+            // Иконку выбирают раньше содержимого: запоминаем её как черновик ячейки.
+            config.put(
+                CellConfig(
+                    index = slot,
+                    type = "draft",
+                    label = "",
+                    icon = icon.ifEmpty { null },
+                    color = color
+                )
+            )
+        }
         store.save(widgetId, config)
         CraftWidgetProvider.updateWidget(this, widgetId)
         setResult(RESULT_OK)
@@ -96,13 +155,14 @@ class CellEditorActivity : AppCompatActivity() {
 
     private fun chooseApp(entry: AppCatalog.AppEntry) {
         val config = store.load(widgetId) ?: return
+        val previous = config.cellAt(slot)
         config.put(
             CellConfig(
                 index = slot,
                 type = "app",
                 label = entry.label,
-                icon = null,
-                color = 0xFFFFFFFF.toInt(),
+                icon = previous?.icon,
+                color = previous?.color ?: 0xFFFFFFFF.toInt(),
                 pkg = entry.packageName,
                 extra = entry.activityName
             )
@@ -112,6 +172,68 @@ class CellEditorActivity : AppCompatActivity() {
         setResult(RESULT_OK)
         finish()
     }
+
+    private fun saveActionCell() {
+        val config = store.load(widgetId) ?: return
+        val previous = config.cellAt(slot)
+        val icon = previous?.icon
+        if (icon.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.icon_need_for_action), Toast.LENGTH_SHORT).show()
+            return
+        }
+        val color = previous?.color ?: 0xFFFFFFFF.toInt()
+
+        if (mode == TYPE_LINK) {
+            val url = findViewById<EditText>(R.id.etUrl).text.toString().trim()
+            if (url.isEmpty()) {
+                Toast.makeText(this, getString(R.string.link_empty), Toast.LENGTH_SHORT).show()
+                return
+            }
+            val label = findViewById<EditText>(R.id.etLinkLabel).text.toString().trim()
+                .ifEmpty { hostOf(url) }
+            config.put(
+                CellConfig(
+                    index = slot,
+                    type = "link",
+                    label = label,
+                    icon = icon,
+                    color = color,
+                    extra = url
+                )
+            )
+        } else {
+            val action = findViewById<EditText>(R.id.etAction).text.toString().trim()
+            if (action.isEmpty()) {
+                Toast.makeText(this, getString(R.string.command_empty), Toast.LENGTH_SHORT).show()
+                return
+            }
+            val pkg = findViewById<EditText>(R.id.etPkg).text.toString().trim()
+            val component = findViewById<EditText>(R.id.etComponent).text.toString().trim()
+            val label = findViewById<EditText>(R.id.etCommandLabel).text.toString().trim()
+                .ifEmpty { action.substringAfterLast('.').ifEmpty { action } }
+            config.put(
+                CellConfig(
+                    index = slot,
+                    type = "command",
+                    label = label,
+                    icon = icon,
+                    color = color,
+                    pkg = pkg.ifEmpty { null },
+                    extra = component.ifEmpty { null },
+                    action = action
+                )
+            )
+        }
+
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        setResult(RESULT_OK)
+        finish()
+    }
+
+    private fun hostOf(url: String): String = runCatching {
+        Uri.parse(url).host?.removePrefix("www.").orEmpty().ifEmpty { url }
+    }.getOrDefault(url)
 
     private fun clearCell() {
         val config = store.load(widgetId) ?: return
@@ -124,6 +246,10 @@ class CellEditorActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_ICON = 202
+        private const val TYPE_APP = "app"
+        private const val TYPE_LINK = "link"
+        private const val TYPE_COMMAND = "command"
+
         const val EXTRA_SLOT = "slot"
         const val EXTRA_ROW = "row"
         const val EXTRA_COL = "col"

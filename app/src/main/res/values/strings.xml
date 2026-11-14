@@ -31,4 +31,16 @@
     <string name="icon_all">Все</string>
     <string name="icon_count">Иконок: %1$d</string>
     <string name="icon_need_app">Сначала выбери приложение для этой ячейки</string>
+    <string name="type_app">Приложение</string>
+    <string name="type_link">Ссылка</string>
+    <string name="type_command">Команда</string>
+    <string name="link_url">Адрес ссылки, например https://yandex.ru</string>
+    <string name="action_label">Подпись под кнопкой</string>
+    <string name="command_pkg">Пакет, например com.v2raytun.android</string>
+    <string name="command_component">Получатель, например com.v2raytun.android.receiver.WidgetProvider1x1</string>
+    <string name="command_action">Действие, например com.v2raytun.android.action.widget.click</string>
+    <string name="action_save">Сохранить</string>
+    <string name="link_empty">Введи адрес ссылки</string>
+    <string name="command_empty">Введи действие команды</string>
+    <string name="icon_need_for_action">Для ссылки и команды сначала выбери иконку</string>
 </resources>

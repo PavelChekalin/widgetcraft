@@ -45,7 +45,7 @@ class WidgetRenderer(private val context: Context) {
             val visible = row < config.rows && col < config.cols
             val cell = if (visible) config.cellAt(slot) else null
 
-            if (cell == null || cell.type == "empty") {
+            if (cell == null || cell.type == "empty" || cell.type == "draft") {
                 views.setViewVisibility(viewId("cell$slot"), View.GONE)
                 continue
             }
@@ -86,12 +86,43 @@ class WidgetRenderer(private val context: Context) {
     private fun cellPendingIntent(widgetId: Int, slot: Int, cell: CellConfig): PendingIntent {
         val requestCode = widgetId * 100 + slot
 
+        // Приложение: обычный запуск через launcher-intent.
         if (cell.type == "app" && cell.pkg != null && cell.extra != null) {
             val launch = AppCatalog.launcherIntent(cell.pkg, cell.extra)
             return PendingIntent.getActivity(
                 context,
                 requestCode,
                 launch,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+        // Ссылка: открыть в браузере или в приложении, которое её умеет.
+        if (cell.type == "link" && !cell.extra.isNullOrBlank()) {
+            val open = Intent(Intent.ACTION_VIEW, Uri.parse(cell.extra))
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return PendingIntent.getActivity(
+                context,
+                requestCode,
+                open,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+        // Команда: broadcast без открытия приложения (VPN, фонарик и подобное).
+        if (cell.type == "command" && !cell.action.isNullOrBlank()) {
+            val command = Intent(cell.action).apply {
+                if (!cell.pkg.isNullOrBlank() && !cell.extra.isNullOrBlank()) {
+                    component = android.content.ComponentName(cell.pkg, cell.extra)
+                } else if (!cell.pkg.isNullOrBlank()) {
+                    `package` = cell.pkg
+                }
+                setData(Uri.parse("widgetplus://cmd/$widgetId/$slot"))
+            }
+            return PendingIntent.getBroadcast(
+                context,
+                requestCode,
+                command,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }

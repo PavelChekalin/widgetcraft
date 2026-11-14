@@ -33,21 +33,134 @@
             android:text="@string/icon_change" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etSearch"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnTypeApp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/type_app"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnTypeLink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/type_link"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnTypeCommand"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/type_command"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/appsBlock"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/search_app"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvApps"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linkBlock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:hint="@string/search_app"
-        android:inputType="text"
-        android:maxLines="1" />
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvApps"
+        <EditText
+            android:id="@+id/etUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/link_url"
+            android:inputType="textUri"
+            android:maxLines="2" />
+
+        <EditText
+            android:id="@+id/etLinkLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/action_label"
+            android:inputType="text"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/commandBlock"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/etPkg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/command_pkg"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/etComponent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/command_component"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/etAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/command_action"
+            android:inputType="text"
+            android:maxLines="2" />
+
+        <EditText
+            android:id="@+id/etCommandLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/action_label"
+            android:inputType="text"
+            android:maxLines="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_weight="1" />
+        android:text="@string/action_save"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btnClearCell"

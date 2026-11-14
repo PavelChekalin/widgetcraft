@@ -91,6 +91,7 @@ class ConfigStore(context: Context) {
                     .put("color", cell.color)
                     .put("pkg", cell.pkg)
                     .put("extra", cell.extra)
+                    .put("action", cell.action)
             )
         }
         return JSONObject()
@@ -122,7 +123,8 @@ class ConfigStore(context: Context) {
                     icon = cell.optStringOrNull("icon"),
                     color = cell.optInt("color", 0xFFFFFFFF.toInt()),
                     pkg = cell.optStringOrNull("pkg"),
-                    extra = cell.optStringOrNull("extra")
+                    extra = cell.optStringOrNull("extra"),
+                    action = cell.optStringOrNull("action")
                 )
             )
         }
