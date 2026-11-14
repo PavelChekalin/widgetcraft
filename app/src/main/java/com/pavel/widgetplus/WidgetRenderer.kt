@@ -133,7 +133,26 @@ class WidgetRenderer(private val context: Context) {
             )
         }
 
-// Переключатель: команда идёт через нас, чтобы потом обновить индикатор.
+        // Папка: системный проводник открывается сразу на нужном каталоге.
+        if (cell.type == "folder" && !cell.extra.isNullOrBlank()) {
+            val path = cell.extra!!
+            val docId = if (path.contains(':')) path else "primary:" + path
+            val folder = DocumentsContract.buildDocumentUri(
+                "com.android.externalstorage.documents",
+                docId
+            )
+            val open = Intent(Intent.ACTION_VIEW)
+                .setDataAndType(folder, DocumentsContract.Document.MIME_TYPE_DIR)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return PendingIntent.getActivity(
+                context,
+                requestCode,
+                open,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+        // Переключатель: команда идёт через нас, чтобы потом обновить индикатор.
         if (cell.type == "toggle" && !cell.action.isNullOrBlank()) {
             val toggle = Intent(context, CraftWidgetProvider::class.java)
                 .setAction(CraftWidgetProvider.ACTION_TOGGLE)

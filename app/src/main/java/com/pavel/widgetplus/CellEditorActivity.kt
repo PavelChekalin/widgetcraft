@@ -3,6 +3,7 @@ package com.pavel.widgetplus
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.net.Uri
+import android.provider.DocumentsContract
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -72,6 +73,7 @@ class CellEditorActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnTypeLink).setOnClickListener { setMode(TYPE_LINK) }
         findViewById<Button>(R.id.btnTypeCommand).setOnClickListener { setMode(TYPE_COMMAND) }
         findViewById<Button>(R.id.btnTypeFolder).setOnClickListener { setMode(TYPE_FOLDER) }
+        findViewById<Button>(R.id.btnPickFolder).setOnClickListener { pickFolder() }
         findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
         findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
@@ -136,6 +138,16 @@ class CellEditorActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_FOLDER && resultCode == RESULT_OK && data?.data != null) {
+            val path = folderPathOf(data.data!!) ?: return
+            findViewById<EditText>(R.id.etFolderPath).setText(path)
+            val label = findViewById<EditText>(R.id.etFolderLabel)
+            if (label.text.isNullOrBlank()) {
+                label.setText(path.substringAfterLast(':').substringAfterLast('/'))
+            }
+            return
+        }
+
         if (requestCode != REQUEST_ICON || resultCode != RESULT_OK || data == null) return
 
         val icon = data.getStringExtra(IconPickerActivity.EXTRA_ICON) ?: return
@@ -265,6 +277,22 @@ class CellEditorActivity : AppCompatActivity() {
         finish()
     }
 
+/** Системный проводник: выбираем папку и запоминаем её адрес. */
+    private fun pickFolder() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+            .addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION or
+                    Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+            )
+        startActivityForResult(intent, REQUEST_FOLDER)
+    }
+
+    /** Из дерева документов достаём идентификатор вида «primary:SHARE». */
+    private fun folderPathOf(uri: Uri): String? = runCatching {
+        DocumentsContract.getTreeDocumentId(uri)
+    }.getOrNull()
+
     private fun saveActionCell() {
         val config = store.load(widgetId) ?: return
         val previous = config.cellAt(slot, page)
@@ -276,13 +304,15 @@ class CellEditorActivity : AppCompatActivity() {
         val color = previous?.color ?: 0xFFFFFFFF.toInt()
 
         if (mode == TYPE_FOLDER) {
-            val path = findViewById<EditText>(R.id.etFolderPath).text.toString().trim().trim('/')
-            if (path.isEmpty()) {
+            val raw = findViewById<EditText>(R.id.etFolderPath).text.toString().trim().trim('/')
+            if (raw.isEmpty()) {
                 Toast.makeText(this, getString(R.string.folder_empty), Toast.LENGTH_SHORT).show()
                 return
             }
+            // Если проводник вернул «primary:SHARE» — оставляем как есть, иначе считаем путём в памяти телефона.
+            val path = if (raw.contains(':')) raw else "primary:" + raw
             val label = findViewById<EditText>(R.id.etFolderLabel).text.toString().trim()
-                .ifEmpty { path.substringAfterLast('/') }
+                .ifEmpty { path.substringAfterLast(':').substringAfterLast('/') }
             config.put(
                 CellConfig(
                     index = slot,
@@ -359,6 +389,7 @@ class CellEditorActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_ICON = 202
+        private const val REQUEST_FOLDER = 203
         private const val TYPE_APP = "app"
         private const val TYPE_LINK = "link"
         private const val TYPE_COMMAND = "command"
