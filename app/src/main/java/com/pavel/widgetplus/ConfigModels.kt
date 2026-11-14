@@ -12,7 +12,9 @@ data class CellConfig(
     val color: Int = 0xFFFFFFFF.toInt(),
     val pkg: String? = null,
     val extra: String? = null,
-    val action: String? = null
+    val action: String? = null,
+    val shape: String? = null,
+    val fill: Int? = null
 )
 
 data class WidgetConfig(
@@ -22,6 +24,9 @@ data class WidgetConfig(
     var labelSize: Int = 10,
     var bgColor: Int = 0xCC15161A.toInt(),
     var cornerRadius: Int = 20,
+    var padding: Int = 4,
+    var cellShape: String = "none",
+    var cellFill: Int = 0x33FFFFFF.toInt(),
     var cells: MutableList<CellConfig> = mutableListOf()
 ) {
     fun cellAt(index: Int): CellConfig? = cells.firstOrNull { it.index == index }
@@ -30,6 +35,9 @@ data class WidgetConfig(
         cells.removeAll { it.index == cell.index }
         cells.add(cell)
     }
+
+    /** Независимая копия: правки копии не должны менять оригинал. */
+    fun copyOf(): WidgetConfig = copy(cells = cells.toMutableList())
 
     fun removeAt(index: Int) {
         cells.removeAll { it.index == index }

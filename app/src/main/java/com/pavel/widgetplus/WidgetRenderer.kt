@@ -22,6 +22,10 @@ class WidgetRenderer(private val context: Context) {
 
     fun build(widgetId: Int, config: WidgetConfig): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_grid)
+        views.setImageViewBitmap(
+            R.id.bgImage,
+            IconBitmap.roundedBackground(context, config.bgColor, config.cornerRadius)
+        )
         val density = context.resources.displayMetrics.density
 
         val maxIconPx = when {
@@ -30,6 +34,9 @@ class WidgetRenderer(private val context: Context) {
             else -> 96
         }
         val iconSizePx = min((34 * density).toInt(), maxIconPx)
+
+        val padPx = (config.padding * density).toInt()
+        views.setViewPadding(R.id.grid, padPx, padPx, padPx, padPx)
 
         for (row in 0 until ConfigStore.GRID_ROWS) {
             views.setViewVisibility(
@@ -61,8 +68,12 @@ class WidgetRenderer(private val context: Context) {
                 config.labelSize.toFloat()
             )
 
+            val iconShape = cell.shape ?: config.cellShape.takeIf { it != "none" }
+            val iconFill = cell.fill ?: if (iconShape != null) config.cellFill else null
             val bitmap = when {
-                cell.icon != null -> IconBitmap.bitmap(context, cell.icon, cell.color, iconSizePx)
+                cell.icon != null -> IconBitmap.bitmap(
+                    context, cell.icon, cell.color, iconSizePx, iconShape, iconFill
+                )
                 cell.type == "app" && cell.pkg != null ->
                     catalog.appIconBitmap(cell.pkg, cell.extra.orEmpty(), iconSizePx)
                 else -> null

@@ -38,5 +38,18 @@
             android:layout_marginTop="20dp"
             android:text="@string/add_widget" />
 
+        <Button
+            android:id="@+id/btnBackup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/backup_save" />
+
+        <Button
+            android:id="@+id/btnRestore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/backup_restore" />
+
     </LinearLayout>
 </ScrollView>

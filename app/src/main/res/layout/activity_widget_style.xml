@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/style_title"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/style_background"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBgTransparent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_transparent"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnBgDark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_dark"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnBgLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_light"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_corner"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnCornerMinus"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/tvCorner"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnCornerPlus"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="@string/plus" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/style_icon_shape"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnShapeNone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_shape_none"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnShapeCircle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_shape_circle"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnShapeRounded"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_shape_rounded"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnShapeSquare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_shape_square"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/style_fill"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/fillRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_labels"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/swLabels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_label_size"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnLabelMinus"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/tvLabelSize"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnLabelPlus"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:text="@string/plus" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/style_density"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnDensityTight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_density_tight"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnDensityNormal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_density_normal"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnDensityLoose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/style_density_loose"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnStyleDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/config_done" />
+
+    </LinearLayout>
+</ScrollView>

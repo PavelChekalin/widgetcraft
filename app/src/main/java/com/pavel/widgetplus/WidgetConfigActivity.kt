@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 
 /**
@@ -37,16 +38,37 @@ class WidgetConfigActivity : AppCompatActivity() {
             AppWidgetManager.INVALID_APPWIDGET_ID
         ) ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
-        config = store.load(widgetId) ?: store.defaultTest().also { store.save(widgetId, it) }
+        config = store.load(widgetId)
+            ?: pendingCopyConfig()
+            ?: store.defaultTest().also { store.save(widgetId, it) }
 
         findViewById<Button>(R.id.btnColsMinus).setOnClickListener { changeCols(-1) }
         findViewById<Button>(R.id.btnColsPlus).setOnClickListener { changeCols(1) }
         findViewById<Button>(R.id.btnRowsMinus).setOnClickListener { changeRows(-1) }
         findViewById<Button>(R.id.btnRowsPlus).setOnClickListener { changeRows(1) }
         findViewById<Button>(R.id.btnDone).setOnClickListener { saveAndFinish() }
+findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
+        findViewById<Button>(R.id.btnStyle).setOnClickListener {
+            startActivity(
+                Intent(this, WidgetStyleActivity::class.java)
+                    .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
+            )
+        }
 
         updateCounters()
         renderPreview()
+    }
+
+/** Если виджет добавлен кнопкой «Копия», забираем настройки исходного. */
+    private fun pendingCopyConfig(): WidgetConfig? {
+        val prefs = getSharedPreferences("widgetplus", MODE_PRIVATE)
+        val sourceId = prefs.getInt(MainActivity.KEY_PENDING_COPY, -1)
+        if (sourceId == -1 || sourceId == widgetId) return null
+        val source = store.load(sourceId) ?: return null
+        val copy = source.copyOf()
+        store.save(widgetId, copy)
+        prefs.edit().remove(MainActivity.KEY_PENDING_COPY).apply()
+        return copy
     }
 
     private fun changeCols(delta: Int) {
@@ -158,6 +180,29 @@ class WidgetConfigActivity : AppCompatActivity() {
             updateCounters()
             renderPreview()
         }
+    }
+
+private fun showPresets() {
+        val presets = Presets.builtin()
+        val names = presets.map { "${it.name} — ${it.description}" }.toTypedArray()
+        AlertDialog.Builder(this)
+            .setTitle(R.string.presets_title)
+            .setItems(names) { _, which ->
+                val fresh = presets[which].build()
+                config.cols = fresh.cols
+                config.rows = fresh.rows
+                config.cells = fresh.cells
+                store.save(widgetId, config)
+                CraftWidgetProvider.updateWidget(this, widgetId)
+                updateCounters()
+                renderPreview()
+                Toast.makeText(
+                    this,
+                    getString(R.string.presets_applied, presets[which].name),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .show()
     }
 
     private fun saveAndFinish() {

@@ -77,6 +77,7 @@ class IconPickerActivity : AppCompatActivity() {
     }
 
     private fun pick(entry: IconCatalog.IconEntry) {
+        catalog.addRecent(entry.file)
         setResult(
             RESULT_OK,
             Intent()
@@ -87,7 +88,11 @@ class IconPickerActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
-        val list = catalog.search(query, category)
+        val list = if (category == IconCatalog.CATEGORY_RECENT) {
+            catalog.recent().filter { it.matches(query) }
+        } else {
+            catalog.search(query, category)
+        }
         adapter.submitList(list)
         findViewById<TextView>(R.id.tvIconCount).text = getString(R.string.icon_count, list.size)
     }
@@ -95,7 +100,8 @@ class IconPickerActivity : AppCompatActivity() {
     private fun renderCategories() {
         val row = findViewById<LinearLayout>(R.id.categoryRow)
         row.removeAllViews()
-        val items = listOf<String?>(null) + catalog.categories()
+        val items = listOf<String?>(null, IconCatalog.CATEGORY_RECENT) + catalog.categories()
+            .filter { it != IconCatalog.CATEGORY_RECENT }
         items.forEach { item ->
             val button = Button(this).apply {
                 text = item ?: getString(R.string.icon_all)

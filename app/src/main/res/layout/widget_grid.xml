@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Сетка 8x10: лишние ряды и ячейки скрываются через setViewVisibility. -->
+<!-- Сетка 8x10: лишние ряды и ячейки скрываются через setViewVisibility.
+     Сгенерировано tools/make_grid_layout.py, руками не править. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/widget_bg"
-    android:padding="4dp">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/grid"
@@ -2341,7 +2346,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>

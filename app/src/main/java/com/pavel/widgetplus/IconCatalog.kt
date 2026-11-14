@@ -27,6 +27,23 @@ class IconCatalog(private val context: Context) {
 
     private var entries: List<IconEntry>? = null
 
+    private val prefs = context.getSharedPreferences("icons", Context.MODE_PRIVATE)
+
+    fun recentFiles(): List<String> =
+        prefs.getString(KEY_RECENT, "").orEmpty()
+            .split(",")
+            .filter { it.isNotBlank() }
+
+    fun addRecent(file: String) {
+        val updated = (listOf(file) + recentFiles()).distinct().take(20)
+        prefs.edit().putString(KEY_RECENT, updated.joinToString(",")).apply()
+    }
+
+    fun recent(): List<IconEntry> {
+        val files = recentFiles()
+        return all().filter { it.file in files }.sortedBy { files.indexOf(it.file) }
+    }
+
     fun all(): List<IconEntry> {
         entries?.let { return it }
         val loaded = load()
@@ -69,6 +86,9 @@ class IconCatalog(private val context: Context) {
     }
 
     companion object {
+        const val KEY_RECENT = "recent"
+        const val CATEGORY_RECENT = "недавние"
+
         /** Палитра для иконок: 16 готовых цветов, свой вводить не нужно. */
         val PALETTE = intArrayOf(
             0xFFFFFFFF.toInt(),
