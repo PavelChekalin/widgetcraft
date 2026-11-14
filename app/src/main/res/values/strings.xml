@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Виджет+</string>
+    <string name="widget_desc">Свой виджет из кнопок</string>
+    <string name="widget_preview_title">Виджет+</string>
+    <string name="widget_preview_subtitle">Настройка на следующем шаге</string>
+    <string name="main_title">Виджет+</string>
+    <string name="main_hint">Здесь появятся твои виджеты: список, настройка, добавление на рабочий стол.</string>
+    <string name="add_widget">Добавить виджет на рабочий стол</string>
+    <string name="pin_not_supported">Лаунчер не поддерживает добавление в один тап — добавь виджет вручную: долгое нажатие на рабочем столе → Виджеты → Виджет+</string>
+</resources>

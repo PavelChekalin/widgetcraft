@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand">#FF4F7CFF</color>
+    <color name="widget_bg">#CC15161A</color>
+    <color name="widget_text">#FFFFFFFF</color>
+    <color name="widget_text_dim">#B3FFFFFF</color>
+    <color name="ic_launcher_background">#FF15161A</color>
+</resources>
