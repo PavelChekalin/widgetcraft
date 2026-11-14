@@ -5,7 +5,19 @@
     <string name="widget_preview_title">Виджет+</string>
     <string name="widget_preview_subtitle">Настройка на следующем шаге</string>
     <string name="main_title">Виджет+</string>
-    <string name="main_hint">Здесь появятся твои виджеты: список, настройка, добавление на рабочий стол.</string>
+    <string name="main_hint">Здесь твои виджеты. Нажми «Настроить», чтобы поменять сетку.</string>
     <string name="add_widget">Добавить виджет на рабочий стол</string>
     <string name="pin_not_supported">Лаунчер не поддерживает добавление в один тап — добавь виджет вручную: долгое нажатие на рабочем столе → Виджеты → Виджет+</string>
+    <string name="config_title">Настройка виджета</string>
+    <string name="config_columns">Колонки</string>
+    <string name="config_rows">Ряды</string>
+    <string name="config_preview">Предпросмотр</string>
+    <string name="config_hint">Нажми на ячейку — выбор содержимого появится на следующем шаге.</string>
+    <string name="config_done">Готово</string>
+    <string name="minus">−</string>
+    <string name="plus">+</string>
+    <string name="no_widgets">Пока ни одного виджета. Добавь его на рабочий стол кнопкой ниже.</string>
+    <string name="widget_item">Виджет #%1$d — %2$d×%3$d, кнопок: %4$d</string>
+    <string name="configure">Настроить</string>
+    <string name="cell_tap">Ячейка %1$d, %2$d</string>
 </resources>

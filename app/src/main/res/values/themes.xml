@@ -2,5 +2,6 @@
 <resources>
     <style name="Theme.WidgetPlus" parent="Theme.Material3.DayNight">
         <item name="colorPrimary">@color/brand</item>
+        <item name="colorOnPrimary">#FFFFFFFF</item>
     </style>
 </resources>
