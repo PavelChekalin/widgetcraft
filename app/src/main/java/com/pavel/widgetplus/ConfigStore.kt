@@ -10,9 +10,9 @@ import java.io.File
  * Хранит конфиги виджетов в filesDir/widgets.json: ключ — appWidgetId.
  * Файл переживает перезапуск и перезагрузку телефона.
  */
-class ConfigStore(context: Context) {
+class ConfigStore(private val file: File) {
 
-    private val file = File(context.filesDir, "widgets.json")
+    constructor(context: Context) : this(File(context.filesDir, "widgets.json"))
 
     fun loadAll(): MutableMap<Int, WidgetConfig> {
         val result = mutableMapOf<Int, WidgetConfig>()
