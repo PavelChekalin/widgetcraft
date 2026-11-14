@@ -87,10 +87,77 @@
                 android:text="@string/plus" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/config_pages"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnPagesMinus"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="@string/minus" />
+
+            <TextView
+                android:id="@+id/tvPages"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/btnPagesPlus"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="@string/plus" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/config_page_current"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnPagePrev"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="&lt;" />
+
+            <TextView
+                android:id="@+id/tvPage"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/btnPageNext"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:text="&gt;" />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:text="@string/config_preview"
             android:textSize="16sp" />
 

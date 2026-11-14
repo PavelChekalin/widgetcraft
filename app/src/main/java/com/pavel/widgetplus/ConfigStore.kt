@@ -117,6 +117,7 @@ class ConfigStore(private val file: File) {
                     .put("pkg", cell.pkg)
                     .put("extra", cell.extra)
                     .put("action", cell.action)
+                    .put("page", cell.page)
                     .put("shape", cell.shape)
                     .put("fill", cell.fill)
             )
@@ -129,6 +130,7 @@ class ConfigStore(private val file: File) {
             .put("bgColor", config.bgColor)
             .put("cornerRadius", config.cornerRadius)
             .put("padding", config.padding)
+            .put("pages", config.pages)
             .put("cellShape", config.cellShape)
             .put("cellFill", config.cellFill)
             .put("cells", cells)
@@ -142,6 +144,7 @@ class ConfigStore(private val file: File) {
             bgColor = json.optInt("bgColor", 0xCC15161A.toInt()),
             cornerRadius = json.optInt("cornerRadius", 20),
             padding = json.optInt("padding", 4),
+            pages = json.optInt("pages", 1),
             cellShape = json.optString("cellShape", "none"),
             cellFill = json.optInt("cellFill", 0x33FFFFFF.toInt())
         )
@@ -158,6 +161,7 @@ class ConfigStore(private val file: File) {
                     pkg = cell.optStringOrNull("pkg"),
                     extra = cell.optStringOrNull("extra"),
                     action = cell.optStringOrNull("action"),
+                    page = cell.optInt("page", 0),
                     shape = cell.optStringOrNull("shape"),
                     fill = if (cell.has("fill") && !cell.isNull("fill")) cell.optInt("fill") else null
                 )

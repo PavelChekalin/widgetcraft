@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 class WidgetConfigActivity : AppCompatActivity() {
 
     private var widgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+    private var pageIndex = 0
     private lateinit var config: WidgetConfig
     private val store by lazy { ConfigStore(this) }
 
@@ -47,6 +48,10 @@ class WidgetConfigActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnRowsMinus).setOnClickListener { changeRows(-1) }
         findViewById<Button>(R.id.btnRowsPlus).setOnClickListener { changeRows(1) }
         findViewById<Button>(R.id.btnDone).setOnClickListener { saveAndFinish() }
+        findViewById<Button>(R.id.btnPagesMinus).setOnClickListener { changePages(-1) }
+        findViewById<Button>(R.id.btnPagesPlus).setOnClickListener { changePages(1) }
+        findViewById<Button>(R.id.btnPagePrev).setOnClickListener { shiftPage(-1) }
+        findViewById<Button>(R.id.btnPageNext).setOnClickListener { shiftPage(1) }
         findViewById<Button>(R.id.btnFit).setOnClickListener { fitToSize() }
         findViewById<Button>(R.id.btnPresets).setOnClickListener { showPresets() }
         findViewById<Button>(R.id.btnStyle).setOnClickListener {
@@ -71,7 +76,8 @@ class WidgetConfigActivity : AppCompatActivity() {
             return
         }
         config.cols = ((width + 30) / 70).coerceIn(MIN_COLS, MAX_COLS)
-        config.rows = ((height + 30) / 70).coerceIn(MIN_ROWS, MAX_ROWS)
+        // Высота в опциях иногда приходит как минимальная (70dp) — тогда ряды не трогаем.
+        if (height >= 100) config.rows = ((height + 30) / 70).coerceIn(MIN_ROWS, MAX_ROWS)
         pruneCells()
         store.save(widgetId, config)
         CraftWidgetProvider.updateWidget(this, widgetId)
@@ -92,7 +98,7 @@ class WidgetConfigActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvSize).text = if (width <= 0 || height <= 0) {
             getString(R.string.size_unknown)
         } else {
-            getString(R.string.size_on_desk, (width + 30) / 70, (height + 30) / 70)
+            getString(R.string.size_on_desk, ((width + 30) / 70).coerceIn(MIN_COLS, MAX_COLS))
         }
     }
 
@@ -127,9 +133,26 @@ class WidgetConfigActivity : AppCompatActivity() {
     }
 
     /** После уменьшения сетки ячейки за её пределами больше не показываем. */
+private fun changePages(delta: Int) {
+        config.pages = (config.pages + delta).coerceIn(1, MAX_PAGES)
+        if (pageIndex >= config.pages) pageIndex = config.pages - 1
+        pruneCells()
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        updateCounters()
+        renderPreview()
+    }
+
+    private fun shiftPage(delta: Int) {
+        pageIndex = (pageIndex + delta + config.pages) % config.pages
+        updateCounters()
+        renderPreview()
+    }
+
     private fun pruneCells() {
         config.cells.removeAll { cell ->
-            cell.index / ConfigStore.GRID_COLUMNS >= config.rows ||
+            cell.page >= config.pages ||
+                cell.index / ConfigStore.GRID_COLUMNS >= config.rows ||
                 cell.index % ConfigStore.GRID_COLUMNS >= config.cols
         }
     }
@@ -137,6 +160,8 @@ class WidgetConfigActivity : AppCompatActivity() {
     private fun updateCounters() {
         findViewById<TextView>(R.id.tvCols).text = config.cols.toString()
         findViewById<TextView>(R.id.tvRows).text = config.rows.toString()
+        findViewById<TextView>(R.id.tvPages).text = config.pages.toString()
+        findViewById<TextView>(R.id.tvPage).text = (pageIndex + 1).toString()
     }
 
     private fun renderPreview() {
@@ -155,7 +180,7 @@ class WidgetConfigActivity : AppCompatActivity() {
 
             for (col in 0 until config.cols) {
                 val slot = row * ConfigStore.GRID_COLUMNS + col
-                val cell = config.cellAt(slot)
+                val cell = config.cellAt(slot, pageIndex)
 
                 val cellLayout = LinearLayout(this).apply {
                     orientation = LinearLayout.VERTICAL
@@ -207,7 +232,8 @@ class WidgetConfigActivity : AppCompatActivity() {
                 .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
                 .putExtra(CellEditorActivity.EXTRA_SLOT, slot)
                 .putExtra(CellEditorActivity.EXTRA_ROW, row + 1)
-                .putExtra(CellEditorActivity.EXTRA_COL, col + 1),
+                .putExtra(CellEditorActivity.EXTRA_COL, col + 1)
+                .putExtra(CellEditorActivity.EXTRA_PAGE, pageIndex),
             REQUEST_EDIT
         )
     }
@@ -261,5 +287,6 @@ class WidgetConfigActivity : AppCompatActivity() {
         private const val MAX_COLS = 8
         private const val MIN_ROWS = 1
         private const val MAX_ROWS = 10
+        private const val MAX_PAGES = 4
     }
 }

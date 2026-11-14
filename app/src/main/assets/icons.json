@@ -1266,6 +1266,12 @@
   "keywords": "ввод enter"
  },
  {
+  "file": "ic_lc_chevron_left",
+  "name": "влево",
+  "category": "стрелки",
+  "keywords": "влево галочка"
+ },
+ {
   "file": "ic_lc_chevron_down",
   "name": "вниз",
   "category": "стрелки",
@@ -1276,6 +1282,12 @@
   "name": "вниз до конца",
   "category": "стрелки",
   "keywords": "вниз двойная"
+ },
+ {
+  "file": "ic_lc_chevron_right",
+  "name": "вправо",
+  "category": "стрелки",
+  "keywords": "вправо галочка"
  },
  {
   "file": "ic_lc_chevrons_up",

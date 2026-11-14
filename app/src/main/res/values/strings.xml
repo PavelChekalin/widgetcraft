@@ -74,9 +74,12 @@
     <string name="duplicate">Копия</string>
     <string name="duplicate_hint">Подтверди добавление копии виджета на рабочий стол</string>
     <string name="fit_size">Подогнать под размер на столе</string>
-    <string name="size_on_desk">На столе: %1$d×%2$d клеток</string>
+    <string name="size_on_desk">Ширина виджета на столе: %1$d клеток</string>
     <string name="size_unknown">Размер виджета пока неизвестен — подожди обновления</string>
     <string name="size_fitted">Сетка подогнана: %1$d×%2$d</string>
     <string name="command_library">Библиотека команд</string>
     <string name="command_library_title">Готовые команды</string>
+    <string name="config_pages">Страницы</string>
+    <string name="config_page_current">Настраиваю страницу</string>
+    <string name="type_pager">Страница →</string>
 </resources>

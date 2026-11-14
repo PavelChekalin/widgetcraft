@@ -33,6 +33,7 @@ class CellEditorActivity : AppCompatActivity() {
 
     private var widgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private var slot = 0
+    private var page = 0
     private var mode = TYPE_APP
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +44,7 @@ class CellEditorActivity : AppCompatActivity() {
         slot = intent.getIntExtra(EXTRA_SLOT, 0)
         val row = intent.getIntExtra(EXTRA_ROW, 1)
         val col = intent.getIntExtra(EXTRA_COL, 1)
+        page = intent.getIntExtra(EXTRA_PAGE, 0)
 
         findViewById<TextView>(R.id.tvCellTitle).text = getString(R.string.cell_title, row, col)
 
@@ -72,6 +74,7 @@ class CellEditorActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnPickIcon).setOnClickListener { pickIcon() }
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
         findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
+        findViewById<Button>(R.id.btnTypePager).setOnClickListener { makePagerCell() }
         findViewById<Button>(R.id.btnCommandLibrary).setOnClickListener { showCommandLibrary() }
 
         prefillFromExisting()
@@ -79,7 +82,7 @@ class CellEditorActivity : AppCompatActivity() {
 
     /** Если ячейка уже настроена, открываем её на нужной вкладке с готовыми полями. */
     private fun prefillFromExisting() {
-        val cell = store.load(widgetId)?.cellAt(slot) ?: return
+        val cell = store.load(widgetId)?.cellAt(slot, page) ?: return
         when (cell.type) {
             "link" -> {
                 setMode(TYPE_LINK)
@@ -114,7 +117,7 @@ class CellEditorActivity : AppCompatActivity() {
     }
 
     private fun pickIcon() {
-        val cell = store.load(widgetId)?.cellAt(slot)
+        val cell = store.load(widgetId)?.cellAt(slot, page)
         if (cell == null && mode == TYPE_APP) {
             Toast.makeText(this, getString(R.string.icon_need_app), Toast.LENGTH_SHORT).show()
             return
@@ -134,7 +137,7 @@ class CellEditorActivity : AppCompatActivity() {
         val color = data.getIntExtra(IconPickerActivity.EXTRA_COLOR, 0xFFFFFFFF.toInt())
 
         val config = store.load(widgetId) ?: return
-        val cell = config.cellAt(slot)
+        val cell = config.cellAt(slot, page)
 
         if (cell != null) {
             config.put(cell.copy(icon = icon.ifEmpty { null }, color = color))
@@ -143,6 +146,7 @@ class CellEditorActivity : AppCompatActivity() {
             config.put(
                 CellConfig(
                     index = slot,
+                    page = page,
                     type = "draft",
                     label = "",
                     icon = icon.ifEmpty { null },
@@ -157,10 +161,11 @@ class CellEditorActivity : AppCompatActivity() {
 
     private fun chooseApp(entry: AppCatalog.AppEntry) {
         val config = store.load(widgetId) ?: return
-        val previous = config.cellAt(slot)
+        val previous = config.cellAt(slot, page)
         config.put(
             CellConfig(
                 index = slot,
+                page = page,
                 type = "app",
                 label = entry.label,
                 icon = previous?.icon,
@@ -191,9 +196,31 @@ class CellEditorActivity : AppCompatActivity() {
             .show()
     }
 
+/** Ячейка-перелистывание: тап открывает следующую страницу виджета. */
+    private fun makePagerCell() {
+        val config = store.load(widgetId) ?: return
+        val previous = config.cellAt(slot, page)
+        config.put(
+            CellConfig(
+                index = slot,
+                page = page,
+                type = "pager",
+                label = "→",
+                icon = "ic_lc_chevron_right",
+                color = previous?.color ?: 0xFFFFFFFF.toInt(),
+                shape = previous?.shape,
+                fill = previous?.fill
+            )
+        )
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        setResult(RESULT_OK)
+        finish()
+    }
+
     private fun saveActionCell() {
         val config = store.load(widgetId) ?: return
-        val previous = config.cellAt(slot)
+        val previous = config.cellAt(slot, page)
         val icon = previous?.icon
         if (icon.isNullOrBlank()) {
             Toast.makeText(this, getString(R.string.icon_need_for_action), Toast.LENGTH_SHORT).show()
@@ -212,6 +239,7 @@ class CellEditorActivity : AppCompatActivity() {
             config.put(
                 CellConfig(
                     index = slot,
+                    page = page,
                     type = "link",
                     label = label,
                     icon = icon,
@@ -232,6 +260,7 @@ class CellEditorActivity : AppCompatActivity() {
             config.put(
                 CellConfig(
                     index = slot,
+                    page = page,
                     type = "command",
                     label = label,
                     icon = icon,
@@ -255,7 +284,7 @@ class CellEditorActivity : AppCompatActivity() {
 
     private fun clearCell() {
         val config = store.load(widgetId) ?: return
-        config.removeAt(slot)
+        config.removeAt(slot, page)
         store.save(widgetId, config)
         CraftWidgetProvider.updateWidget(this, widgetId)
         setResult(RESULT_OK)
@@ -271,6 +300,7 @@ class CellEditorActivity : AppCompatActivity() {
         const val EXTRA_SLOT = "slot"
         const val EXTRA_ROW = "row"
         const val EXTRA_COL = "col"
+        const val EXTRA_PAGE = "page"
     }
 }
 

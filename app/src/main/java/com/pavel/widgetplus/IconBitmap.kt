@@ -67,6 +67,13 @@ object IconBitmap {
         return bitmap
     }
 
+    /** Прозрачная картинка: ею очищаем ImageView, когда у ячейки нет иконки. */
+    fun empty(): Bitmap = empty
+
+    private val empty: Bitmap by lazy {
+        Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+    }
+
     /** Фон виджета: скруглённый прямоугольник нужного цвета (может быть прозрачным). */
     fun roundedBackground(
         context: Context,

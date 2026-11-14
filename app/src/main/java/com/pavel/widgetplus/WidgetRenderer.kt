@@ -20,7 +20,7 @@ class WidgetRenderer(private val context: Context) {
 
     private val catalog by lazy { AppCatalog(context) }
 
-    fun build(widgetId: Int, config: WidgetConfig): RemoteViews {
+    fun build(widgetId: Int, config: WidgetConfig, page: Int = 0): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_grid)
         views.setImageViewBitmap(
             R.id.bgImage,
@@ -50,7 +50,7 @@ class WidgetRenderer(private val context: Context) {
             val row = slot / ConfigStore.GRID_COLUMNS
             val col = slot % ConfigStore.GRID_COLUMNS
             val visible = row < config.rows && col < config.cols
-            val cell = if (visible) config.cellAt(slot) else null
+            val cell = if (visible) config.cellAt(slot, page) else null
 
             if (cell == null || cell.type == "empty" || cell.type == "draft") {
                 views.setViewVisibility(viewId("cell$slot"), View.GONE)
@@ -78,9 +78,7 @@ class WidgetRenderer(private val context: Context) {
                     catalog.appIconBitmap(cell.pkg, cell.extra.orEmpty(), iconSizePx)
                 else -> null
             }
-            if (bitmap != null) {
-                views.setImageViewBitmap(viewId("icon$slot"), bitmap)
-            }
+            views.setImageViewBitmap(viewId("icon$slot"), bitmap ?: IconBitmap.empty())
 
             views.setOnClickPendingIntent(
                 viewId("cell$slot"),
@@ -134,6 +132,19 @@ class WidgetRenderer(private val context: Context) {
                 context,
                 requestCode,
                 command,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+        if (cell.type == "pager") {
+            val pager = Intent(context, CraftWidgetProvider::class.java)
+                .setAction(CraftWidgetProvider.ACTION_PAGE_NEXT)
+                .putExtra(CraftWidgetProvider.EXTRA_WIDGET_ID, widgetId)
+                .setData(Uri.parse("widgetplus://pager/$widgetId/$slot"))
+            return PendingIntent.getBroadcast(
+                context,
+                requestCode,
+                pager,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }
