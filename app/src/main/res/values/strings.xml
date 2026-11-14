@@ -82,4 +82,6 @@
     <string name="config_pages">Страницы</string>
     <string name="config_page_current">Настраиваю страницу</string>
     <string name="type_pager">Страница →</string>
+    <string name="command_make_toggle">Сделать переключателем</string>
+    <string name="toggle_saved">Ячейка стала переключателем</string>
 </resources>

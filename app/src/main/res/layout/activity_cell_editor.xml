@@ -162,6 +162,14 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnMakeToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/command_make_toggle"
+        android:textSize="12sp" />
+
+    <Button
         android:id="@+id/btnTypePager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

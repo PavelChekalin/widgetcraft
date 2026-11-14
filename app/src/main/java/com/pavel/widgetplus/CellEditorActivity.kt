@@ -75,6 +75,7 @@ class CellEditorActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnClearCell).setOnClickListener { clearCell() }
         findViewById<Button>(R.id.btnSave).setOnClickListener { saveActionCell() }
         findViewById<Button>(R.id.btnTypePager).setOnClickListener { makePagerCell() }
+        findViewById<Button>(R.id.btnMakeToggle).setOnClickListener { makeToggleCell() }
         findViewById<Button>(R.id.btnCommandLibrary).setOnClickListener { showCommandLibrary() }
 
         prefillFromExisting()
@@ -214,6 +215,47 @@ class CellEditorActivity : AppCompatActivity() {
         )
         store.save(widgetId, config)
         CraftWidgetProvider.updateWidget(this, widgetId)
+        setResult(RESULT_OK)
+        finish()
+    }
+
+/** Переключатель: та же команда, но виджет рисует точку состояния и обновляется после нажатия. */
+    private fun makeToggleCell() {
+        val config = store.load(widgetId) ?: return
+        val action = findViewById<EditText>(R.id.etAction).text.toString().trim()
+        if (action.isEmpty()) {
+            Toast.makeText(this, getString(R.string.command_empty), Toast.LENGTH_SHORT).show()
+            return
+        }
+        val previous = config.cellAt(slot, page)
+        val icon = previous?.icon
+        if (icon.isNullOrBlank()) {
+            Toast.makeText(this, getString(R.string.icon_need_for_action), Toast.LENGTH_SHORT).show()
+            return
+        }
+        val pkg = findViewById<EditText>(R.id.etPkg).text.toString().trim()
+        val component = findViewById<EditText>(R.id.etComponent).text.toString().trim()
+        val label = findViewById<EditText>(R.id.etCommandLabel).text.toString().trim()
+            .ifEmpty { action.substringAfterLast('.').ifEmpty { action } }
+
+        config.put(
+            CellConfig(
+                index = slot,
+                page = page,
+                type = "toggle",
+                label = label,
+                icon = icon,
+                color = previous?.color ?: 0xFFFFFFFF.toInt(),
+                pkg = pkg.ifEmpty { null },
+                extra = component.ifEmpty { null },
+                action = action,
+                shape = previous?.shape,
+                fill = previous?.fill
+            )
+        )
+        store.save(widgetId, config)
+        CraftWidgetProvider.updateWidget(this, widgetId)
+        Toast.makeText(this, getString(R.string.toggle_saved), Toast.LENGTH_SHORT).show()
         setResult(RESULT_OK)
         finish()
     }

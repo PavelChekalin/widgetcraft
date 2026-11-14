@@ -1,5 +1,7 @@
 package com.pavel.widgetplus
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
@@ -60,6 +62,15 @@ class CraftWidgetProvider : AppWidgetProvider() {
                 nextPage(context, intent)
                 return
             }
+            ACTION_TOGGLE -> {
+                handleToggle(context, intent)
+                return
+            }
+            ACTION_REFRESH -> {
+                val id = intent.getIntExtra(EXTRA_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+                if (id != AppWidgetManager.INVALID_APPWIDGET_ID) updateWidget(context, id)
+                return
+            }
             ACTION_COPY -> {
                 copyConfig(context, intent)
                 return
@@ -107,6 +118,43 @@ class CraftWidgetProvider : AppWidgetProvider() {
         updateWidget(context, newId)
     }
 
+/** Переключатель: отправляем команду приложению и обновляем индикатор с задержкой. */
+    private fun handleToggle(context: Context, intent: Intent) {
+        val widgetId = intent.getIntExtra(EXTRA_WIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        val action = intent.getStringExtra(EXTRA_ACTION)
+        if (action.isNullOrBlank()) return
+
+        val target = Intent(action)
+        val pkg = intent.getStringExtra(EXTRA_PKG)
+        val component = intent.getStringExtra(EXTRA_COMPONENT)
+        if (!pkg.isNullOrBlank() && !component.isNullOrBlank()) {
+            target.component = android.content.ComponentName(pkg, component)
+        } else if (!pkg.isNullOrBlank()) {
+            target.`package` = pkg
+        }
+        target.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        Log.d(TAG, "toggle widget=$widgetId action=$action pkg=$pkg")
+        runCatching { context.sendBroadcast(target) }
+            .onFailure { Log.w(TAG, "не удалось отправить команду $action", it) }
+
+        if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+            // Приложение меняет состояние не мгновенно — обновляем виджет через 2 секунды.
+            val refresh = Intent(context, CraftWidgetProvider::class.java)
+                .setAction(ACTION_REFRESH)
+                .putExtra(EXTRA_WIDGET_ID, widgetId)
+                .setData(android.net.Uri.parse("widgetplus://refresh/$widgetId/${System.currentTimeMillis()}"))
+            val pending = PendingIntent.getBroadcast(
+                context,
+                widgetId + 9000,
+                refresh,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarm.set(AlarmManager.RTC, System.currentTimeMillis() + 2000, pending)
+            updateWidget(context, widgetId)
+        }
+    }
+
     companion object {
         private const val TAG = "WidgetPlus"
         private const val PREFS = "widgetplus"
@@ -116,6 +164,11 @@ class CraftWidgetProvider : AppWidgetProvider() {
         const val ACTION_CELL_CLICK = "com.pavel.widgetplus.CELL_CLICK"
         const val ACTION_COPY = "com.pavel.widgetplus.COPY"
         const val ACTION_PAGE_NEXT = "com.pavel.widgetplus.PAGE_NEXT"
+        const val ACTION_TOGGLE = "com.pavel.widgetplus.TOGGLE"
+        const val ACTION_REFRESH = "com.pavel.widgetplus.REFRESH"
+        const val EXTRA_PKG = "pkg"
+        const val EXTRA_COMPONENT = "component"
+        const val EXTRA_ACTION = "action"
         const val EXTRA_WIDGET_ID = "widgetId"
         const val EXTRA_SOURCE_ID = "sourceId"
         const val EXTRA_LABEL = "label"

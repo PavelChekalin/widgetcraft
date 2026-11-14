@@ -54,7 +54,33 @@ switch ($Action) {
         & $adb -s $Device shell input tap $point[0] $point[1]
         "tapped id '$Id' at $($point[0]),$($point[1])"
     }
-    "type" {
+    "waitTap" {
+        $deadline = (Get-Date).AddSeconds(12)
+        $point = $null
+        while ((Get-Date) -lt $deadline) {
+            $point = Find-Bounds $xml $Text
+            if (-not $point) { $point = Find-BoundsById $xml $Id }
+            if ($point) { break }
+            Start-Sleep -Milliseconds 400
+            $xml = Get-UiXml
+        }
+        if (-not $point) { "NOT FOUND: $Text"; exit 1 }
+        & $adb -s $Device shell input tap $point[0] $point[1]
+        "tapped '$Text' at $($point[0]),$($point[1])"
+    }
+    "waitId" {
+        $deadline = (Get-Date).AddSeconds(12)
+        $point = $null
+        while ((Get-Date) -lt $deadline) {
+            $point = Find-BoundsById $xml $Id
+            if ($point) { break }
+            Start-Sleep -Milliseconds 400
+            $xml = Get-UiXml
+        }
+        if (-not $point) { "NOT FOUND: $Id"; exit 1 }
+        & $adb -s $Device shell input tap $point[0] $point[1]
+        "tapped id '$Id' at $($point[0]),$($point[1])"
+    }    "type" {
         & $adb -s $Device shell input text $Text
         "typed '$Text'"
     }

@@ -24,10 +24,11 @@ object IconBitmap {
         color: Int,
         sizePx: Int,
         shape: String? = null,
-        fill: Int? = null
+        fill: Int? = null,
+        indicator: Int? = null
     ): Bitmap? {
         if (sizePx <= 0) return null
-        val key = "$resName|$color|$sizePx|$shape|$fill"
+        val key = "$resName|$color|$sizePx|$shape|$fill|$indicator"
         cache[key]?.let { return it }
 
         val resId = context.resources.getIdentifier(resName, "drawable", context.packageName)
@@ -62,6 +63,21 @@ object IconBitmap {
 
         drawable.setBounds(inset, inset, sizePx - inset, sizePx - inset)
         drawable.draw(canvas)
+
+        // Точка состояния для переключателей (например, включён ли VPN).
+        if (indicator != null) {
+            val dotRadius = sizePx * 0.16f
+            val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                setColor(indicator)
+                style = Paint.Style.FILL
+            }
+            val border = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                setColor(0xFF15161A.toInt())
+                style = Paint.Style.FILL
+            }
+            canvas.drawCircle(sizePx - dotRadius * 1.1f, sizePx - dotRadius * 1.1f, dotRadius * 1.35f, border)
+            canvas.drawCircle(sizePx - dotRadius * 1.1f, sizePx - dotRadius * 1.1f, dotRadius, dotPaint)
+        }
 
         cache[key] = bitmap
         return bitmap

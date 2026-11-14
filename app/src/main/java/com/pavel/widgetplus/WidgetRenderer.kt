@@ -1,6 +1,8 @@
 package com.pavel.widgetplus
 
 import android.app.PendingIntent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -69,10 +71,13 @@ class WidgetRenderer(private val context: Context) {
             )
 
             val iconShape = cell.shape ?: config.cellShape.takeIf { it != "none" }
+            val indicator = if (cell.type == "toggle") {
+                if (isVpnOn()) 0xFF34D399.toInt() else 0xFF94A3B8.toInt()
+            } else null
             val iconFill = cell.fill ?: if (iconShape != null) config.cellFill else null
             val bitmap = when {
                 cell.icon != null -> IconBitmap.bitmap(
-                    context, cell.icon, cell.color, iconSizePx, iconShape, iconFill
+                    context, cell.icon, cell.color, iconSizePx, iconShape, iconFill, indicator
                 )
                 cell.type == "app" && cell.pkg != null ->
                     catalog.appIconBitmap(cell.pkg, cell.extra.orEmpty(), iconSizePx)
@@ -91,6 +96,15 @@ class WidgetRenderer(private val context: Context) {
 
     private fun viewId(name: String): Int =
         context.resources.getIdentifier(name, "id", context.packageName)
+
+/** Включён ли сейчас VPN — видно по активному соединению, без разрешений. */
+    private fun isVpnOn(): Boolean {
+        val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+            ?: return false
+        val network = manager.activeNetwork ?: return false
+        val capabilities = manager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+    }
 
     private fun cellPendingIntent(widgetId: Int, slot: Int, cell: CellConfig): PendingIntent {
         val requestCode = widgetId * 100 + slot
@@ -114,6 +128,23 @@ class WidgetRenderer(private val context: Context) {
                 context,
                 requestCode,
                 open,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
+// Переключатель: команда идёт через нас, чтобы потом обновить индикатор.
+        if (cell.type == "toggle" && !cell.action.isNullOrBlank()) {
+            val toggle = Intent(context, CraftWidgetProvider::class.java)
+                .setAction(CraftWidgetProvider.ACTION_TOGGLE)
+                .putExtra(CraftWidgetProvider.EXTRA_WIDGET_ID, widgetId)
+                .putExtra(CraftWidgetProvider.EXTRA_PKG, cell.pkg)
+                .putExtra(CraftWidgetProvider.EXTRA_COMPONENT, cell.extra)
+                .putExtra(CraftWidgetProvider.EXTRA_ACTION, cell.action)
+                .setData(Uri.parse("widgetplus://toggle/$widgetId/$slot"))
+            return PendingIntent.getBroadcast(
+                context,
+                requestCode,
+                toggle,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }
