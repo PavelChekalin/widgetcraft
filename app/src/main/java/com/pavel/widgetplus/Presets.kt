@@ -86,7 +86,36 @@ object Presets {
                     )
                 )
             }
-        }
+        },
+        Preset("Рабочий", "Склад, файлы, камера и кнопка VPN в одном виджете") {
+            WidgetConfig(cols = 4, rows = 2).apply {
+                placeholders(
+                    this,
+                    listOf(
+                        Triple("Посылки", "ic_lc_package", 0xFFFF9F45.toInt()),
+                        Triple("Файлы", "ic_lc_folder", 0xFFFFD166.toInt()),
+                        Triple("Заметки", "ic_lc_sticky_note", 0xFF60A5FA.toInt()),
+                        Triple("Камера", "ic_lc_camera", 0xFFE2E8F0.toInt()),
+                        Triple("Склад", "ic_lc_warehouse", 0xFF34D399.toInt()),
+                        Triple("Почта", "ic_lc_mail", 0xFFF472B6.toInt()),
+                        Triple("Общий", "ic_lc_share_2", 0xFFB0BEC5.toInt())
+                    )
+                )
+                // Восьмая ячейка — переключатель VPN с индикатором.
+                cells.add(
+                    CellConfig(
+                        index = 1 * ConfigStore.GRID_COLUMNS + 3,
+                        type = "toggle",
+                        label = "VPN",
+                        icon = "ic_lc_shield",
+                        color = 0xFF34D399.toInt(),
+                        pkg = "com.v2raytun.android",
+                        extra = "com.v2raytun.android.receiver.WidgetProvider1x1",
+                        action = "com.v2raytun.android.action.widget.click"
+                    )
+                )
+            }
+        },
     )
 
     /** Ячейка-заготовка: иконка и подпись есть, приложение выбирается потом. */
